@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:decision_making_app/ZufallsErgebnis.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +26,8 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
-        colorScheme: ColorScheme.dark()
+        colorScheme: ColorScheme.dark(),
+        textTheme:  TextTheme(displayLarge: TextStyle(fontSize: 28), displayMedium: TextStyle(fontSize: 20), displaySmall: TextStyle(fontSize: 15) )
       ),
       home: ZufallsErgebnis(),
     );
