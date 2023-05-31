@@ -2,26 +2,7 @@ import 'package:decision_making_app/StartWidget.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
 import 'package:flutter/material.dart';
 
-class Entscheidung {
-  String fragestellung;
-  List<String> optionen = [];
-
-  Entscheidung(String this.fragestellung) {}
-
-  void add(String option) {
-    optionen.add(option);
-  }
-}
-
-class Datenbank {
-  List<Entscheidung> entscheidungen = [];
-
-  Entscheidung add(String fragestellung) {
-    var neueEntscheidung = Entscheidung(fragestellung);
-    entscheidungen.add(neueEntscheidung);
-    return neueEntscheidung;
-  }
-}
+import 'Datenbank.dart';
 
 var datenbank = Datenbank();
 
