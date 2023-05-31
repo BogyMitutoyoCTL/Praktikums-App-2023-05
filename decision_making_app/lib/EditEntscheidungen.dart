@@ -41,8 +41,11 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
       body: Center(
           child: Padding(
               padding: EdgeInsets.all(15),
-              child: ListView(
-                children: _Textfelder,
+              child: Scrollbar(
+                thumbVisibility: true,
+                child: ListView(
+                  children: _Textfelder,
+                ),
               ))),
     );
   }
