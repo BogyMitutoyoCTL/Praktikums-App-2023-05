@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:decision_making_app/EditEntscheidungen.dart';
 import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/StartWidget.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
@@ -30,11 +31,11 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
-        appBarTheme: AppBarTheme(backgroundColor: Colors.black26),
+        appBarTheme: AppBarTheme(backgroundColor: Colors.black26, titleTextStyle: TextStyle(fontSize: 20, color: schriftfarbe)),
         colorScheme: ColorScheme.dark(),
         textTheme:  TextTheme(displayLarge: TextStyle(fontSize: 28, color: schriftfarbe, fontWeight: FontWeight.bold), displayMedium: TextStyle(fontSize: 20, color: schriftfarbe), displaySmall: TextStyle(fontSize: 15, color: schriftfarbe) )
       ),
-      home: StartWidget(),
+      home: EditEntscheidungen(),
     );
   }
 }
