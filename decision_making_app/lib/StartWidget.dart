@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class StartWidget extends StatefulWidget {
@@ -15,12 +17,12 @@ class _StartWidgetState extends State<StartWidget> {
       {
         buttons.add(Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(child: MaterialButton(onPressed: zufall,
-          child: Text("Inhalt"), textColor: Colors.black,
+          child: Container(color: Colors.white,child: MaterialButton(onPressed: zufall,
+           textColor: Colors.black,child: Text("Inhalt"),
           ),
-            color: Colors.white,),
-
-        ),);
+          ),
+        ),
+        );
       }
     //TODO Inhalte in Buttons
     return Scaffold(
@@ -29,7 +31,7 @@ class _StartWidgetState extends State<StartWidget> {
         title: Center(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Text("Entscheidungshilfe", style: TextStyle(fontSize: 25, color: Colors.white),),
+            child: Text("Entscheidungshilfe"),
           ),
         ),
       ),

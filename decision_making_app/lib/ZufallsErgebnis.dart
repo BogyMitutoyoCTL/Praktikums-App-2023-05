@@ -10,10 +10,10 @@ class ZufallsErgebnis extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text("Entscheidungshilfe", style: TextStyle(
-          fontSize: 20
-        )),
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        title: Center(
+          child: Text("Entscheidungshilfe"
+          ),
+        ),
       ),
       body: Center(
           child: Text("Lorem ipsum", style: Theme.of(context).textTheme.displayLarge),      //TODO Zufallsergebnis hier anzeigen
