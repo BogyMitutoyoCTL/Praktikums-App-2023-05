@@ -10,13 +10,32 @@ class StartWidget extends StatefulWidget {
 class _StartWidgetState extends State<StartWidget> {
   @override
   Widget build(BuildContext context) {
+    List<Widget> buttons=[];
+    for(int i=0; i<5; i++)
+      {
+        buttons.add(Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(child: MaterialButton(onPressed: zufall), color: Colors.white,),
+        ),);
+      }
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black12,
         title: Center(
-          child: Text("Entscheidungshilfe", style: TextStyle(fontSize: 25),),
+          child: Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: Text("Entscheidungshilfe", style: TextStyle(fontSize: 25, color: Colors.white),),
+          ),
         ),
       ),
-      body: MaterialButton(onPressed: zufall),
+      body:
+          Center(
+            child: Column(
+              children: buttons,
+            ),
+          ),
+
+      backgroundColor: Colors.black26,
 
     );
   }
