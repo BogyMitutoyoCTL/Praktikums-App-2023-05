@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class EditEntscheidungen extends StatefulWidget {
@@ -12,10 +14,11 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text("Entscheidungen", style: Theme.of(context).textTheme.displayMedium),
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
+        title: Center(
+            child: Text("Entscheidungen" )
+        )
       ),
-      body: ,
+      body: Placeholder(),
     );
   }
 }

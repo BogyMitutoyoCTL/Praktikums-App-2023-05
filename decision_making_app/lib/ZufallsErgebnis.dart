@@ -10,7 +10,9 @@ class ZufallsErgebnis extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Scaffold(
       appBar: AppBar(
-        title: Text("Entscheidungshilfe"
+        title: Center(
+          child: Text("Entscheidungshilfe"
+          ),
         ),
       ),
       body: Center(
