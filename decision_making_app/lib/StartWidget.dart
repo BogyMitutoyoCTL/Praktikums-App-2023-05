@@ -16,7 +16,7 @@ class _StartWidgetState extends State<StartWidget> {
         buttons.add(Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(child: MaterialButton(onPressed: zufall,
-          child: Text("Inhalt"), textColor: Colors.black,
+          child: Text("Inhalt"),textColor: Colors.black,
           ),
             color: Colors.white,),
 

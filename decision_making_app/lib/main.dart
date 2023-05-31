@@ -1,8 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/StartWidget.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
 import 'package:flutter/material.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -32,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.dark(),
         textTheme:  TextTheme(displayLarge: TextStyle(fontSize: 28, color: schriftfarbe, fontWeight: FontWeight.bold), displayMedium: TextStyle(fontSize: 20, color: schriftfarbe), displaySmall: TextStyle(fontSize: 15, color: schriftfarbe) )
       ),
-      home: ZufallsErgebnis(),
+      home: EditOptionen(),
     );
   }
 }
