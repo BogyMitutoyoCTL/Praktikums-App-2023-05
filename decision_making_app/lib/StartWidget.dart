@@ -15,7 +15,11 @@ class _StartWidgetState extends State<StartWidget> {
       {
         buttons.add(Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(child: MaterialButton(onPressed: zufall), color: Colors.white,),
+          child: Container(child: MaterialButton(onPressed: zufall,
+          child: Text("Inhalt"), textColor: Colors.black,
+          ),
+            color: Colors.white,),
+
         ),);
       }
     //TODO Inhalte in Buttons
@@ -24,7 +28,7 @@ class _StartWidgetState extends State<StartWidget> {
         //backgroundColor: Colors.black12,
         title: Center(
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(15.0),
             child: Text("Entscheidungshilfe", style: TextStyle(fontSize: 25, color: Colors.white),),
           ),
         ),
