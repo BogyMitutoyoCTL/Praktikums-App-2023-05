@@ -33,6 +33,7 @@ class _StartWidgetState extends State<StartWidget> {
           Center(
             child: Column(
               children: buttons,
+
             ),
           ),
 
