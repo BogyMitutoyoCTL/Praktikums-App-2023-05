@@ -11,7 +11,7 @@ class _StartWidgetState extends State<StartWidget> {
   @override
   Widget build(BuildContext context) {
     List<Widget> buttons=[];
-    for(int i=0; i<5; i++)
+    for(int i=0; i<7; i++)
       {
         buttons.add(Padding(
           padding: const EdgeInsets.all(8.0),
@@ -31,9 +31,13 @@ class _StartWidgetState extends State<StartWidget> {
       ),
       body:
           Center(
-            child: Column(
-              children: buttons,
+            child: Scrollbar(
+              thumbVisibility: true,
+              child: ListView(
+                children: buttons,
 
+
+              ),
             ),
           ),
 
@@ -41,6 +45,8 @@ class _StartWidgetState extends State<StartWidget> {
 
     );
   }
+
+
 
   zufall()
   {
