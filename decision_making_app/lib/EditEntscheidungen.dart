@@ -57,8 +57,14 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
                   children: _Textfelder,
                 ),
               ))),
+      floatingActionButton: IconButton(
+        onPressed: plus,
+        icon: Icon(Icons.add),
+      ),
     );
   }
 
   void onDelete() {}
+
+  void plus() {}
 }
