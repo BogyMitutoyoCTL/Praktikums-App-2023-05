@@ -2,6 +2,9 @@
 
 import 'package:decision_making_app/EditEntscheidungen.dart';
 import 'package:decision_making_app/EditOptionen.dart';
+// ignore_for_file: prefer_const_constructors
+
+import 'package:decision_making_app/EditEntscheidungen.dart';
 import 'package:decision_making_app/StartWidget.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
 import 'package:flutter/material.dart';
@@ -53,8 +56,7 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.bold),
               displayMedium: TextStyle(fontSize: 20, color: schriftfarbe),
               displaySmall: TextStyle(fontSize: 15, color: schriftfarbe))),
-      home: EditOptionen(),
+      home: ZufallsErgebnis(),
     );
   }
 }
-
