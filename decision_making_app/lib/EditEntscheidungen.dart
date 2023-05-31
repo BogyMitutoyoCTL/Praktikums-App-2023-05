@@ -27,11 +27,18 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<TextField> _Textfelder = [];
+    final List<Widget> _Textfelder = [];
     for (TextEditingController _controller in _controller) {
-      _Textfelder.add(TextField(
-        controller: _controller,
-        style: Theme.of(context).textTheme.displaySmall,
+      _Textfelder.add(Row(
+        children: [
+          Expanded(
+            child: TextField(
+              controller: _controller,
+              style: Theme.of(context).textTheme.displaySmall,
+            ),
+          ),
+          IconButton(onPressed: onDelete, icon: Icon(Icons.delete))
+        ],
       ));
     }
     return Scaffold(
@@ -47,4 +54,6 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
               ))),
     );
   }
+
+  void onDelete() {}
 }
