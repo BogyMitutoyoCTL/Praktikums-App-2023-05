@@ -25,6 +25,8 @@ class _EditOptionenState extends State<EditOptionen> {
     }
   }
 
+  //TODO Dispose
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> _Textfelder = [];
@@ -37,6 +39,7 @@ class _EditOptionenState extends State<EditOptionen> {
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
+          IconButton(onPressed: onDelete, icon: Icon(Icons.delete))
         ],
       ));
     }
@@ -56,5 +59,9 @@ class _EditOptionenState extends State<EditOptionen> {
                 ),
               ))),
     );
+  }
+
+  void onDelete() {
+    //TODO Delete -> evtl = dispose (?)
   }
 }
