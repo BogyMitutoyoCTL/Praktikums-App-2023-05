@@ -13,7 +13,7 @@ class EditEntscheidungen extends StatefulWidget {
 
 class _EditEntscheidungenState extends State<EditEntscheidungen> {
   final List<TextEditingController> _controller = [];
-  List<String> _text = [];
+  final List<String> _text = [];
 
   _EditEntscheidungenState() {
     for (Entscheidung entscheidung in datenbank.entscheidungen) {
