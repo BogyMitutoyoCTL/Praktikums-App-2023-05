@@ -13,7 +13,7 @@ class ZufallsErgebnis extends StatelessWidget {
         title: Text("Entscheidungshilfe", style: TextStyle(
           fontSize: 20
         )),
-        backgroundColor: Colors.black26,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: Center(
           child: Text("Lorem ipsum", style: Theme.of(context).textTheme.displayLarge),      //TODO Zufallsergebnis hier anzeigen
