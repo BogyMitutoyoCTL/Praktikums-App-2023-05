@@ -18,9 +18,10 @@ class _StartWidgetState extends State<StartWidget> {
           child: Container(child: MaterialButton(onPressed: zufall), color: Colors.white,),
         ),);
       }
+    //TODO Inhalte in Buttons
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.black12,
+        //backgroundColor: Colors.black12,
         title: Center(
           child: Padding(
             padding: const EdgeInsets.all(10.0),
@@ -35,7 +36,7 @@ class _StartWidgetState extends State<StartWidget> {
             ),
           ),
 
-      backgroundColor: Colors.black26,
+      //backgroundColor: Colors.black26,
 
     );
   }
