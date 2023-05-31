@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.dark(),
         textTheme:  TextTheme(displayLarge: TextStyle(fontSize: 28, color: schriftfarbe, fontWeight: FontWeight.bold), displayMedium: TextStyle(fontSize: 20, color: schriftfarbe), displaySmall: TextStyle(fontSize: 15, color: schriftfarbe) )
       ),
-      home: EditOptionen(),
+      home: StartWidget(),
     );
   }
 }

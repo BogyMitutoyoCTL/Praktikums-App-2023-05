@@ -10,18 +10,24 @@ class StartWidget extends StatefulWidget {
 class _StartWidgetState extends State<StartWidget> {
   @override
   Widget build(BuildContext context) {
-    List<Widget> buttons=[];
-    for(int i=0; i<7; i++)
-      {
-        buttons.add(Padding(
+    List<Widget> buttons = [];
+    List<String> inhalte = [];
+    for (int i = 0; i < 7; i++) {
+      inhalte.add("Lorem Ipsum");
+      buttons.add(
+        Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Container(child: MaterialButton(onPressed: zufall,
-          child: Text("Inhalt"),textColor: Colors.black,
+          child: Container(
+            child: MaterialButton(
+              onPressed: zufall,
+              child: Text("Inhalt"),
+              textColor: Colors.black,
+            ),
+            color: Colors.white,
           ),
-            color: Colors.white,),
-
-        ),);
-      }
+        ),
+      );
+    }
     //TODO Inhalte in Buttons
     return Scaffold(
       appBar: AppBar(
@@ -29,32 +35,25 @@ class _StartWidgetState extends State<StartWidget> {
         title: Center(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Text("Entscheidungshilfe", style: TextStyle(fontSize: 25, color: Colors.white),),
+            child: Text(
+              "Entscheidungshilfe",
+              style: TextStyle(fontSize: 25, color: Colors.white),
+            ),
           ),
         ),
       ),
-      body:
-          Center(
-            child: Scrollbar(
-              thumbVisibility: true,
-              child: ListView(
-                children: buttons,
-
-
-              ),
-            ),
+      body: Center(
+        child: Scrollbar(
+          thumbVisibility: true,
+          child: ListView(
+            children: buttons,
           ),
+        ),
+      ),
 
       //backgroundColor: Colors.black26,
-
     );
   }
 
-
-
-  zufall()
-  {
-
-
-  }
+  zufall() {}
 }
