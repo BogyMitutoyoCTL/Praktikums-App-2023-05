@@ -11,11 +11,9 @@ class EditEntscheidungen extends StatefulWidget {
 
 class _EditEntscheidungenState extends State<EditEntscheidungen> {
   final List<TextEditingController> _controller = [];
-  final List<TextField> _Textfelder = [];
   List<String> _text = [];
 
-  @override
-  Widget build(BuildContext context) {
+  _EditEntscheidungenState() {
     for (int i = 0; i < 10; i++) {
       _text.add("Lorem ipsum");
 
@@ -26,8 +24,15 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
           _text[i] = _controller[i].text;
         });
       });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final List<TextField> _Textfelder = [];
+    for (TextEditingController _controller in _controller) {
       _Textfelder.add(TextField(
-        controller: _controller[i],
+        controller: _controller,
         style: Theme.of(context).textTheme.displaySmall,
       ));
     }
@@ -36,8 +41,11 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
       body: Center(
           child: Padding(
               padding: EdgeInsets.all(15),
-              child: ListView(
-                children: _Textfelder,
+              child: Scrollbar(
+                thumbVisibility: true,
+                child: ListView(
+                  children: _Textfelder,
+                ),
               ))),
     );
   }
