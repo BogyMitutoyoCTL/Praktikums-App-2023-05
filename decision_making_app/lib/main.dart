@@ -5,8 +5,20 @@ import 'package:decision_making_app/StartWidget.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
 import 'package:flutter/material.dart';
 
+import 'Datenbank.dart';
+
+var datenbank = Datenbank();
+
 void main() {
-  // runApp(const MyApp());
+  var kochen = datenbank.add("Was kochen wir heute?");
+  kochen.add("Nudeln");
+  kochen.add("Spaghetti");
+  kochen.add("Reis");
+  var sport = datenbank.add("Wie halten wir uns heute fit?");
+  sport.add("Fußball");
+  sport.add("Schwimmen");
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -44,3 +56,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
