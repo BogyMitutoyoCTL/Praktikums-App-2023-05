@@ -16,10 +16,7 @@ class ZufallsErgebnis extends StatelessWidget {
         backgroundColor: Colors.black26,
       ),
       body: Center(
-          child: Text("Lorem ipsum", style: TextStyle(
-            fontSize: 28,
-            color: Colors.white
-          )),      //TODO Zufallsergebnis hier anzeigen
+          child: Text("Lorem ipsum", style: Theme.of(context).textTheme.displayLarge),      //TODO Zufallsergebnis hier anzeigen
       )
     );
   }

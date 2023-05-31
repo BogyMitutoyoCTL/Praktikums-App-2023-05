@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Color schriftfarbe = Colors.white;
     return MaterialApp(
       title: 'Decision Maker',
       theme: ThemeData(
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
         colorScheme: ColorScheme.dark(),
-        textTheme:  TextTheme(displayLarge: TextStyle(fontSize: 28), displayMedium: TextStyle(fontSize: 20), displaySmall: TextStyle(fontSize: 15) )
+        textTheme:  TextTheme(displayLarge: TextStyle(fontSize: 28, color: schriftfarbe, fontWeight: FontWeight.bold), displayMedium: TextStyle(fontSize: 20, color: schriftfarbe), displaySmall: TextStyle(fontSize: 15, color: schriftfarbe) )
       ),
       home: ZufallsErgebnis(),
     );
