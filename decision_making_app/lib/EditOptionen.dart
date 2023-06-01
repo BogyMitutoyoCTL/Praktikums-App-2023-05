@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:decision_making_app/ControllerUndOptionen.dart';
 
 class EditOptionen extends StatefulWidget {
-  Entscheidung title;
+  final Entscheidung title;
 
-  EditOptionen(this.title, {Key? key}) : super(key: key);
+  const EditOptionen(this.title, {Key? key}) : super(key: key);
 
   @override
   State<EditOptionen> createState() => _EditOptionenState();
@@ -16,7 +16,11 @@ class EditOptionen extends StatefulWidget {
 class _EditOptionenState extends State<EditOptionen> {
   final List<ControllerUndOptionen> controllers = [];
 
-  _EditOptionenState() {
+  //TODO Dispose -> maybe bei "onDelete"
+
+  @override
+  void initState() {
+    super.initState();
     for (Option option in widget.title.optionen) {
       ControllerUndOptionen CuO = ControllerUndOptionen();
       controllers.add(CuO);
@@ -28,18 +32,16 @@ class _EditOptionenState extends State<EditOptionen> {
     }
   }
 
-  //TODO Dispose -> maybe bei "onDelete"
-
   @override
   Widget build(BuildContext context) {
     String optionName = "";
     final List<Widget> _Textfelder = [];
-    for (TextEditingController _controller in _controllers) {
+    for (ControllerUndOptionen _controller in controllers) {
       _Textfelder.add(Row(
         children: [
           Expanded(
             child: TextField(
-              controller: _controller,
+              controller: _controller.controller,
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
@@ -70,8 +72,8 @@ class _EditOptionenState extends State<EditOptionen> {
     );
   }
 
-  void onDelete(TextEditingController _controller) {
-    _controllers.remove(_controller);
+  void onDelete(ControllerUndOptionen controller) {
+    controllers.remove(controller);
     setState(() {});
   }
 
