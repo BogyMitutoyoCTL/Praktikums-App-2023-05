@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:decision_making_app/Datenbank.dart';
 import 'package:decision_making_app/EditEntscheidungen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
@@ -38,6 +37,7 @@ class _StartWidgetState extends State<StartWidget> {
     }
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         //backgroundColor: Colors.black12,
         title: Center(
           child: Padding(
