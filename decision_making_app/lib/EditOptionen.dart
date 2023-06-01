@@ -1,30 +1,29 @@
 import 'package:decision_making_app/Entscheidung.dart';
+import 'package:decision_making_app/Option.dart';
 import 'package:decision_making_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:decision_making_app/ControllerUndOptionen.dart';
 
 class EditOptionen extends StatefulWidget {
-  const EditOptionen({Key? key}) : super(key: key);
+  Entscheidung title;
+
+  EditOptionen(this.title, {Key? key}) : super(key: key);
 
   @override
   State<EditOptionen> createState() => _EditOptionenState();
 }
 
 class _EditOptionenState extends State<EditOptionen> {
-  final List<TextEditingController> _controllers = [];
-  List<String> _text = [];
+  final List<ControllerUndOptionen> controllers = [];
 
   _EditOptionenState() {
-    var kochen = datenbank.entscheidungen[0];
-    for (int i = 0; i < kochen.optionen.length; i++) {
-      //_text.add("Lorem ipsum 2");
-      TextEditingController controller;
-      var textEditingController = TextEditingController();
-      _controllers.add(textEditingController);
-      textEditingController.text = kochen.optionen[i];
-      textEditingController.addListener(() {
-        setState(() {
-          kochen.optionen[i] = textEditingController.text;
-        });
+    for (Option option in widget.title.optionen) {
+      ControllerUndOptionen CuO = ControllerUndOptionen();
+      controllers.add(CuO);
+      CuO.entscheidung = widget.title;
+      CuO.controller.text = option.text;
+      setState(() {
+        option.text = CuO.controller.text;
       });
     }
   }

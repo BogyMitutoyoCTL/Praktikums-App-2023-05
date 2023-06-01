@@ -1,10 +1,12 @@
+import 'package:decision_making_app/Option.dart';
+
 class Entscheidung {
   String fragestellung;
-  List<String> optionen = [];
+  List<Option> optionen = [];
 
   Entscheidung(this.fragestellung);
 
   void add(String option) {
-    optionen.add(option);
+    optionen.add(Option(option));
   }
 }

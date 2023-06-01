@@ -13,17 +13,17 @@ class EditEntscheidungen extends StatefulWidget {
 }
 
 class _EditEntscheidungenState extends State<EditEntscheidungen> {
-  final List<ControllerUndString> controllers = [];
+  final List<ControllerUndEntscheidung> controllers = [];
 
   _EditEntscheidungenState() {
     for (Entscheidung entscheidung in datenbank.entscheidungen) {
-      ControllerUndString CuS = ControllerUndString();
-      controllers.add(CuS);
-      CuS.entscheidung = entscheidung;
-      CuS.controller.text = CuS.entscheidung.fragestellung;
-      CuS.controller.addListener(() {
+      ControllerUndEntscheidung CuE = ControllerUndEntscheidung();
+      controllers.add(CuE);
+      CuE.entscheidung = entscheidung;
+      CuE.controller.text = CuE.entscheidung.fragestellung;
+      CuE.controller.addListener(() {
         setState(() {
-          CuS.entscheidung.fragestellung = CuS.controller.text;
+          CuE.entscheidung.fragestellung = CuE.controller.text;
         });
       });
     }
@@ -32,17 +32,14 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _Textfelder = [];
-    for (ControllerUndString con in controllers) {
+    for (ControllerUndEntscheidung con in controllers) {
       var loeschen = () => onDelete(con);
       _Textfelder.add(Row(
         children: [
           Expanded(
             child: TextField(
               controller: con.controller,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .displaySmall,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
           IconButton(onPressed: loeschen, icon: Icon(Icons.delete))
@@ -68,7 +65,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     );
   }
 
-  void onDelete(ControllerUndString con) {
+  void onDelete(ControllerUndEntscheidung con) {
     setState(() {
       controllers.remove(con);
       datenbank.entscheidungen.remove(con.entscheidung);
@@ -79,7 +76,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   void plus() {
     var entscheidung = datenbank.add("");
     setState(() {
-      ControllerUndString CuS = ControllerUndString();
+      ControllerUndEntscheidung CuS = ControllerUndEntscheidung();
       controllers.add(CuS);
       CuS.entscheidung = entscheidung;
       CuS.controller.text = CuS.entscheidung.fragestellung;
