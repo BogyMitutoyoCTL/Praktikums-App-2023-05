@@ -23,9 +23,7 @@ class ZufallsErgebnis extends StatelessWidget {
       )),
       body: Center(
         child: Text(zufallsergebnis(),
-            style: Theme.of(context)
-                .textTheme
-                .displayLarge), //TODO Zufallsergebnis hier anzeigen
+            style: Theme.of(context).textTheme.displayLarge),
       ),
     );
   }
