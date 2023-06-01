@@ -1,3 +1,5 @@
+import 'package:decision_making_app/Datenbank.dart';
+import 'package:decision_making_app/main.dart';
 import 'package:flutter/material.dart';
 
 class StartWidget extends StatefulWidget {
@@ -11,7 +13,8 @@ class _StartWidgetState extends State<StartWidget> {
   @override
   Widget build(BuildContext context) {
     List<Widget> buttons = [];
-    for (int i = 0; i < 7; i++) {
+    for (int i = 0; i < datenbank.entscheidungen.length; i++) {
+      var inhalt = datenbank.entscheidungen[i].fragestellung;
       buttons.add(
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -20,7 +23,7 @@ class _StartWidgetState extends State<StartWidget> {
             child: MaterialButton(
               onPressed: zufall,
               textColor: Colors.black,
-              child: Text("Inhalt"),
+              child: Text(inhalt),
             ),
           ),
         ),
@@ -50,6 +53,8 @@ class _StartWidgetState extends State<StartWidget> {
     );
   }
 
-  zufall() {}
+  zufall() {
+    //TODO Tastendruck
+  }
 //TODO mit Lambdas Tastendruck machen
 }
