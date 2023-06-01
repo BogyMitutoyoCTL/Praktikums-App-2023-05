@@ -1,3 +1,5 @@
+import 'package:decision_making_app/Entscheidung.dart';
+import 'package:decision_making_app/main.dart';
 import 'package:flutter/material.dart';
 
 class EditOptionen extends StatefulWidget {
@@ -12,23 +14,26 @@ class _EditOptionenState extends State<EditOptionen> {
   List<String> _text = [];
 
   _EditOptionenState() {
-    for (int i = 0; i < 10; i++) {
-      _text.add("Lorem ipsum 2");
-
-      _controller.add(TextEditingController());
-      _controller[i].text = _text[i];
-      _controller[i].addListener(() {
+    var kochen = datenbank.entscheidungen[0];
+    for (int i = 0; i < kochen.optionen.length; i++) {
+      //_text.add("Lorem ipsum 2");
+      TextEditingController controller;
+      var textEditingController = TextEditingController();
+      _controller.add(textEditingController);
+      textEditingController.text = kochen.optionen[i];
+      textEditingController.addListener(() {
         setState(() {
-          _text[i] = _controller[i].text;
+          kochen.optionen[i] = textEditingController.text;
         });
       });
     }
   }
 
-  //TODO Dispose
+  //TODO Dispose -> maybe bei "onDelete"
 
   @override
   Widget build(BuildContext context) {
+    String optionName = "";
     final List<Widget> _Textfelder = [];
     for (TextEditingController _controller in _controller) {
       _Textfelder.add(Row(
@@ -46,7 +51,7 @@ class _EditOptionenState extends State<EditOptionen> {
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text("Edit Optionen"),
+          child: Text(optionName),
         ),
       ),
       body: Center(
@@ -62,6 +67,9 @@ class _EditOptionenState extends State<EditOptionen> {
   }
 
   void onDelete() {
-    //TODO Delete -> evtl = dispose (?)
+    var kochen = datenbank.entscheidungen[0];
+    for (var option in kochen.optionen) {
+      print(option);
+    }
   }
 }
