@@ -1,4 +1,5 @@
 import 'package:decision_making_app/Datenbank.dart';
+import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
 import 'package:flutter/material.dart';
 import 'package:decision_making_app/Controller.dart';
@@ -39,10 +40,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
           Expanded(
             child: TextField(
               controller: con.controller,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .displaySmall,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
           IconButton(onPressed: loeschen, icon: Icon(Icons.delete))
@@ -51,7 +49,13 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     }
 
     return Scaffold(
-      appBar: AppBar(title: Center(child: Text("Entscheidungen"))),
+      appBar: AppBar(
+          title: Row(
+        children: [
+          Expanded(child: Center(child: Text("Entscheidungen"))),
+          IconButton(onPressed: home, icon: Icon(Icons.home)),
+        ],
+      )),
       body: Center(
           child: Padding(
               padding: EdgeInsets.all(15),
@@ -89,5 +93,10 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
         });
       });
     });
+  }
+
+  void home() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => EditOptionen()));
   }
 }
