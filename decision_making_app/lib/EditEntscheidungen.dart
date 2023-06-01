@@ -19,7 +19,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     for (Entscheidung entscheidung in datenbank.entscheidungen) {
       ControllerUndString CuS = ControllerUndString();
       controllers.add(CuS);
-      CuS.entscheidung.fragestellung = entscheidung.fragestellung;
+      CuS.entscheidung = entscheidung;
       CuS.controller.text = CuS.entscheidung.fragestellung;
       CuS.controller.addListener(() {
         setState(() {
@@ -39,7 +39,10 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
           Expanded(
             child: TextField(
               controller: con.controller,
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .displaySmall,
             ),
           ),
           IconButton(onPressed: loeschen, icon: Icon(Icons.delete))
@@ -65,7 +68,13 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     );
   }
 
-  void onDelete(ControllerUndString con) {}
+  void onDelete(ControllerUndString con) {
+    setState(() {
+      controllers.remove(con);
+      datenbank.entscheidungen.remove(con.entscheidung);
+      con.controller.dispose();
+    });
+  }
 
   void plus() {
     var entscheidung = datenbank.add("");
