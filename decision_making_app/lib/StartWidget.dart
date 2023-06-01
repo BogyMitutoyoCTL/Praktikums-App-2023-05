@@ -16,7 +16,7 @@ class _StartWidgetState extends State<StartWidget> {
   Widget build(BuildContext context) {
     List<Widget> buttons = [];
     for (int i = 0; i < datenbank.entscheidungen.length; i++) {
-      var inhalt = datenbank.entscheidungen[i].fragestellung;
+      var frage = datenbank.entscheidungen[i].fragestellung;
       buttons.add(
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -24,10 +24,10 @@ class _StartWidgetState extends State<StartWidget> {
             color: Colors.white,
             child: MaterialButton(
               onPressed: () {
-                zufall(buttons);
+                zufall(buttons, frage);
               },
               textColor: Colors.black,
-              child: Text(inhalt),
+              child: Text(frage),
             ),
           ),
         ),
@@ -61,9 +61,9 @@ class _StartWidgetState extends State<StartWidget> {
     );
   }
 
-  void zufall(List<Widget> buttons) {
+  void zufall(List<Widget> buttons, String frage) {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => ZufallsErgebnis()));
+        .push(MaterialPageRoute(builder: (context) => ZufallsErgebnis(frage)));
   }
 
   void bearbeiten() {
