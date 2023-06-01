@@ -1,5 +1,6 @@
 import 'package:decision_making_app/Datenbank.dart';
 import 'package:decision_making_app/EditEntscheidungen.dart';
+import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
 import 'package:decision_making_app/main.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class _StartWidgetState extends State<StartWidget> {
   Widget build(BuildContext context) {
     List<Widget> buttons = [];
     for (int i = 0; i < datenbank.entscheidungen.length; i++) {
-      var inhalt = datenbank.entscheidungen[i].fragestellung;
+      var frage = datenbank.entscheidungen[i].fragestellung;
       buttons.add(
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -24,10 +25,10 @@ class _StartWidgetState extends State<StartWidget> {
             color: Colors.white,
             child: MaterialButton(
               onPressed: () {
-                zufall(buttons);
+                zufall(buttons, frage, Entscheidung(frage));
               },
               textColor: Colors.black,
-              child: Text(inhalt),
+              child: Text(frage),
             ),
           ),
         ),
@@ -61,9 +62,9 @@ class _StartWidgetState extends State<StartWidget> {
     );
   }
 
-  void zufall(List<Widget> buttons) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => ZufallsErgebnis()));
+  void zufall(List<Widget> buttons, String frage, Entscheidung entscheidungen) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ZufallsErgebnis(frage, entscheidungen)));
   }
 
   void bearbeiten() {
