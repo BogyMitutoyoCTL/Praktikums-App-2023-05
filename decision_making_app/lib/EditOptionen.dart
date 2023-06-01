@@ -44,7 +44,10 @@ class _EditOptionenState extends State<EditOptionen> {
           Expanded(
             child: TextField(
               controller: _controller.controller,
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .displaySmall,
             ),
           ),
           IconButton(
@@ -70,16 +73,20 @@ class _EditOptionenState extends State<EditOptionen> {
                   children: _Textfelder,
                 ),
               ))),
-      floatingActionButton: IconButton(onPressed: plus, icon: Icon(Icons.add)),
+      floatingActionButton: FloatingActionButton(
+        onPressed: plus,
+        backgroundColor: Colors.white,
+        child: const Icon(Icons.add),
+      ),
     );
   }
 
   void onDelete(ControllerUndOption controller) {
     var entscheidung = widget.entscheidung;
     setState(() {
+      entscheidung.optionen.remove(controller.option);
+
       controllers.remove(controller);
-      int index = datenbank.entscheidungen.indexOf(entscheidung);
-      datenbank.entscheidungen[index].optionen.remove(controller.option);
       controller.controller.dispose();
     });
   }
