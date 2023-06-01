@@ -35,7 +35,6 @@ class _EditOptionenState extends State<EditOptionen> {
 
   @override
   Widget build(BuildContext context) {
-    String optionName = "";
     final List<Widget> _Textfelder = [];
     for (ControllerUndOption _controller in controllers) {
       _Textfelder.add(Row(
@@ -60,7 +59,7 @@ class _EditOptionenState extends State<EditOptionen> {
           children: [
             Expanded(
               child: Center(
-                child: Text(optionName),
+                child: Text("Optionen"),
               ),
             ),
             IconButton(onPressed: home, icon: Icon(Icons.home)),
