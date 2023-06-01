@@ -35,7 +35,6 @@ class _EditOptionenState extends State<EditOptionen> {
 
   @override
   Widget build(BuildContext context) {
-    String optionName = "";
     final List<Widget> _Textfelder = [];
     for (ControllerUndOption _controller in controllers) {
       _Textfelder.add(Row(
