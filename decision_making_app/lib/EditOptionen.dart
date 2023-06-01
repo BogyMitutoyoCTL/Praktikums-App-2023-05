@@ -60,7 +60,7 @@ class _EditOptionenState extends State<EditOptionen> {
           children: [
             Expanded(
               child: Center(
-                child: Text(optionName),
+                child: Text(AppLocalizations.of(context)!.options),
               ),
             ),
             IconButton(onPressed: home, icon: Icon(Icons.home)),

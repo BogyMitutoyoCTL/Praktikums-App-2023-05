@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:decision_making_app/gen_l10n/app_localizations.dart'
 import 'StartWidget.dart';
 
 class DecisionMakingApp extends StatelessWidget {
@@ -9,6 +9,8 @@ class DecisionMakingApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Color schriftfarbe = Colors.white;
     return MaterialApp(
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       title: 'Decision Maker',
       theme: ThemeData(
           primarySwatch: Colors.blue,

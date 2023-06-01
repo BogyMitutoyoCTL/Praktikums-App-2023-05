@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:decision_making_app/EditEntscheidungen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
@@ -16,17 +15,17 @@ class StartWidget extends StatefulWidget {
 class _StartWidgetState extends State<StartWidget> {
   @override
   Widget build(BuildContext context) {
-    List<Widget> buttons = [];
+    List<Widget> mainButtons = [];
     for (int i = 0; i < datenbank.entscheidungen.length; i++) {
       var frage = datenbank.entscheidungen[i].fragestellung;
-      buttons.add(
+      mainButtons.add(
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
             color: Colors.white,
             child: MaterialButton(
               onPressed: () {
-                zufall(buttons, frage, datenbank.entscheidungen[i]);
+                zufall(mainButtons, frage, datenbank.entscheidungen[i]);
               },
               textColor: Colors.black,
               child: Text(frage),
@@ -44,7 +43,9 @@ class _StartWidgetState extends State<StartWidget> {
             padding: const EdgeInsets.all(15.0),
             child: Row(
               children: [
-                Expanded(child: Center(child: Text("Entscheidungshilfe"))),
+                Expanded(
+                    child: Center(
+                        child: Text(AppLocalizations.of(context)!.mainPage))),
                 IconButton(onPressed: bearbeiten, icon: Icon(Icons.edit)),
               ],
             ),
@@ -55,7 +56,7 @@ class _StartWidgetState extends State<StartWidget> {
         child: Scrollbar(
           thumbVisibility: true,
           child: ListView(
-            children: buttons,
+            children: mainButtons,
           ),
         ),
       ),
