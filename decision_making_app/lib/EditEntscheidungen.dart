@@ -41,7 +41,10 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
           Expanded(
             child: TextField(
               controller: con.controller,
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .displaySmall,
             ),
           ),
           Row(
@@ -61,11 +64,11 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     return Scaffold(
       appBar: AppBar(
           title: Row(
-        children: [
-          Expanded(child: Center(child: Text("Entscheidungen"))),
-          IconButton(onPressed: home, icon: Icon(Icons.home)),
-        ],
-      )),
+            children: [
+              Expanded(child: Center(child: Text("Entscheidungen"))),
+              IconButton(onPressed: home, icon: Icon(Icons.home)),
+            ],
+          )),
       body: Center(
           child: Padding(
               padding: EdgeInsets.all(15),
@@ -75,9 +78,11 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
                   children: _Textfelder,
                 ),
               ))),
-      floatingActionButton: IconButton(
+      floatingActionButton: FloatingActionButton(
         onPressed: plus,
-        icon: Icon(Icons.add),
+
+        backgroundColor: Colors.white,
+        child: const Icon(Icons.add),
       ),
     );
   }
