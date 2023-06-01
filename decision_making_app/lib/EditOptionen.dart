@@ -67,11 +67,16 @@ class _EditOptionenState extends State<EditOptionen> {
                   children: _Textfelder,
                 ),
               ))),
+      floatingActionButton: IconButton(onPressed: plus, icon: Icon(Icons.add)),
     );
   }
 
   void onDelete(TextEditingController _controller) {
     _controllers.remove(_controller);
     setState(() {});
+  }
+
+  void plus() {
+    //TODO Add Button
   }
 }
