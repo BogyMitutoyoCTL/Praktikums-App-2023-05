@@ -40,10 +40,19 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
           Expanded(
             child: TextField(
               controller: con.controller,
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .displaySmall,
             ),
           ),
-          IconButton(onPressed: loeschen, icon: Icon(Icons.delete))
+          Row(
+            children: [
+              IconButton(onPressed: bearbeiten, icon: Icon(Icons.edit)),
+              IconButton(onPressed: loeschen, icon: Icon(Icons.delete))
+            ],
+          )
+
         ],
       ));
     }
@@ -51,11 +60,11 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     return Scaffold(
       appBar: AppBar(
           title: Row(
-        children: [
-          Expanded(child: Center(child: Text("Entscheidungen"))),
-          IconButton(onPressed: home, icon: Icon(Icons.home)),
-        ],
-      )),
+            children: [
+              Expanded(child: Center(child: Text("Entscheidungen"))),
+              IconButton(onPressed: home, icon: Icon(Icons.home)),
+            ],
+          )),
       body: Center(
           child: Padding(
               padding: EdgeInsets.all(15),
@@ -98,5 +107,9 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   void home() {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => EditOptionen()));
+  }
+
+  void bearbeiten() {
+    //TODO Entscheidungen bearbeiten
   }
 }
