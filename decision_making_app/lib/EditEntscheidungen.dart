@@ -1,5 +1,7 @@
 import 'package:decision_making_app/Datenbank.dart';
+import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
+import 'package:decision_making_app/StartWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:decision_making_app/Controller.dart';
 
@@ -13,17 +15,17 @@ class EditEntscheidungen extends StatefulWidget {
 }
 
 class _EditEntscheidungenState extends State<EditEntscheidungen> {
-  final List<ControllerUndEntscheidung> controllers = [];
+  final List<ControllerUndString> controllers = [];
 
   _EditEntscheidungenState() {
     for (Entscheidung entscheidung in datenbank.entscheidungen) {
-      ControllerUndEntscheidung CuE = ControllerUndEntscheidung();
+      ControllerUndString CuE = ControllerUndString();
       controllers.add(CuE);
       CuE.entscheidung = entscheidung;
       CuE.controller.text = CuE.entscheidung.fragestellung;
       CuE.controller.addListener(() {
         setState(() {
-          CuE.entscheidung.fragestellung = CuE.controller.text;
+          CuS.entscheidung.fragestellung = CuS.controller.text;
         });
       });
     }
@@ -32,23 +34,41 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _Textfelder = [];
-    for (ControllerUndEntscheidung con in controllers) {
+    for (ControllerUndString con in controllers) {
       var loeschen = () => onDelete(con);
       _Textfelder.add(Row(
         children: [
           Expanded(
             child: TextField(
               controller: con.controller,
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .displaySmall,
             ),
           ),
-          IconButton(onPressed: loeschen, icon: Icon(Icons.delete))
+          Row(
+            children: [
+              IconButton(
+                  onPressed: () {
+                    bearbeiten(con.entscheidung);
+                  },
+                  icon: Icon(Icons.edit)),
+              IconButton(onPressed: loeschen, icon: Icon(Icons.delete))
+            ],
+          )
         ],
       ));
     }
 
     return Scaffold(
-      appBar: AppBar(title: Center(child: Text("Entscheidungen"))),
+      appBar: AppBar(
+          title: Row(
+            children: [
+              Expanded(child: Center(child: Text("Entscheidungen"))),
+              IconButton(onPressed: home, icon: Icon(Icons.home)),
+            ],
+          )),
       body: Center(
           child: Padding(
               padding: EdgeInsets.all(15),
@@ -58,14 +78,16 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
                   children: _Textfelder,
                 ),
               ))),
-      floatingActionButton: IconButton(
+      floatingActionButton: FloatingActionButton(
         onPressed: plus,
-        icon: Icon(Icons.add),
+
+        backgroundColor: Colors.white,
+        child: const Icon(Icons.add),
       ),
     );
   }
 
-  void onDelete(ControllerUndEntscheidung con) {
+  void onDelete(ControllerUndString con) {
     setState(() {
       controllers.remove(con);
       datenbank.entscheidungen.remove(con.entscheidung);
@@ -76,7 +98,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   void plus() {
     var entscheidung = datenbank.add("");
     setState(() {
-      ControllerUndEntscheidung CuS = ControllerUndEntscheidung();
+      ControllerUndString CuS = ControllerUndString();
       controllers.add(CuS);
       CuS.entscheidung = entscheidung;
       CuS.controller.text = CuS.entscheidung.fragestellung;
@@ -86,5 +108,16 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
         });
       });
     });
+  }
+
+  void home() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => StartWidget()));
+  }
+
+  void bearbeiten(Entscheidung aktuelleEntscheidung) {
+    print(aktuelleEntscheidung);
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => EditOptionen(aktuelleEntscheidung)));
   }
 }
