@@ -38,7 +38,12 @@ class _StartWidgetState extends State<StartWidget> {
         title: Center(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Text("Entscheidungshilfe"),
+            child: Row(
+              children: [
+                Expanded(child: Center(child: Text("Entscheidungshilfe"))),
+                IconButton(onPressed: bearbeiten, icon: Icon(Icons.edit)),
+              ],
+            ),
           ),
         ),
       ),
@@ -60,4 +65,6 @@ class _StartWidgetState extends State<StartWidget> {
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => ZufallsErgebnis()));
   }
+
+  void bearbeiten() {}
 }
