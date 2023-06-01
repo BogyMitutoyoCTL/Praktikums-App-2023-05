@@ -1,6 +1,7 @@
 import 'package:decision_making_app/Datenbank.dart';
 import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
+import 'package:decision_making_app/StartWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:decision_making_app/Controller.dart';
 
@@ -18,13 +19,13 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
 
   _EditEntscheidungenState() {
     for (Entscheidung entscheidung in datenbank.entscheidungen) {
-      ControllerUndString CuS = ControllerUndString();
-      controllers.add(CuS);
-      CuS.entscheidung = entscheidung;
-      CuS.controller.text = CuS.entscheidung.fragestellung;
-      CuS.controller.addListener(() {
+      ControllerUndString CuE = ControllerUndString();
+      controllers.add(CuE);
+      CuE.entscheidung = entscheidung;
+      CuE.controller.text = CuE.entscheidung.fragestellung;
+      CuE.controller.addListener(() {
         setState(() {
-          CuS.entscheidung.fragestellung = CuS.controller.text;
+          CuE.entscheidung.fragestellung = CuE.controller.text;
         });
       });
     }
@@ -40,19 +41,19 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
           Expanded(
             child: TextField(
               controller: con.controller,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .displaySmall,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
           Row(
             children: [
-              IconButton(onPressed: bearbeiten, icon: Icon(Icons.edit)),
+              IconButton(
+                  onPressed: () {
+                    bearbeiten(con.entscheidung);
+                  },
+                  icon: Icon(Icons.edit)),
               IconButton(onPressed: loeschen, icon: Icon(Icons.delete))
             ],
           )
-
         ],
       ));
     }
@@ -60,11 +61,11 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     return Scaffold(
       appBar: AppBar(
           title: Row(
-            children: [
-              Expanded(child: Center(child: Text("Entscheidungen"))),
-              IconButton(onPressed: home, icon: Icon(Icons.home)),
-            ],
-          )),
+        children: [
+          Expanded(child: Center(child: Text("Entscheidungen"))),
+          IconButton(onPressed: home, icon: Icon(Icons.home)),
+        ],
+      )),
       body: Center(
           child: Padding(
               padding: EdgeInsets.all(15),
@@ -106,10 +107,12 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
 
   void home() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => EditOptionen()));
+        .push(MaterialPageRoute(builder: (context) => StartWidget()));
   }
 
-  void bearbeiten() {
-    //TODO Entscheidungen bearbeiten
+  void bearbeiten(Entscheidung aktuelleEntscheidung) {
+    print(aktuelleEntscheidung);
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => EditOptionen(aktuelleEntscheidung)));
   }
 }
