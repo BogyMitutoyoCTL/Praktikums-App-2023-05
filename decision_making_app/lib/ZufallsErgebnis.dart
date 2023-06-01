@@ -1,5 +1,5 @@
 // ignore_for_file: prefer_const_constructors
-
+import 'dart:math';
 import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/Option.dart';
 import 'package:flutter/material.dart';
@@ -22,11 +22,19 @@ class ZufallsErgebnis extends StatelessWidget {
         child: Text(frage),
       )),
       body: Center(
-        child: Text("Lorem ipsum",
+        child: Text(zufallsergebnis(),
             style: Theme.of(context)
                 .textTheme
                 .displayLarge), //TODO Zufallsergebnis hier anzeigen
       ),
     );
+  }
+
+  String zufallsergebnis() {
+    var laenge = entscheidungen.optionen.length;
+    Random random = new Random();
+    int randomNumber = random.nextInt(laenge); //from 0 to laenge-1
+    String ergebnis = entscheidungen.optionen[randomNumber].toString();
+    return ergebnis;
   }
 }
