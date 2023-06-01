@@ -4,6 +4,7 @@ import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
 import 'package:decision_making_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class StartWidget extends StatefulWidget {
   const StartWidget({Key? key}) : super(key: key);

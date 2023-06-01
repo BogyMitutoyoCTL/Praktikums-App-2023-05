@@ -1,4 +1,4 @@
-import 'package:decision_making_app/Datenbank.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/StartWidget.dart';
