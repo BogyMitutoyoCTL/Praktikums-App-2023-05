@@ -16,8 +16,6 @@ class EditOptionen extends StatefulWidget {
 class _EditOptionenState extends State<EditOptionen> {
   final List<ControllerUndOption> controllers = [];
 
-  //TODO Dispose -> maybe bei "onDelete"
-
   @override
   void initState() {
     super.initState();
