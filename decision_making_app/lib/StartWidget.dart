@@ -1,4 +1,5 @@
 import 'package:decision_making_app/Datenbank.dart';
+import 'package:decision_making_app/EditEntscheidungen.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
 import 'package:decision_making_app/main.dart';
 import 'package:flutter/material.dart';
@@ -61,10 +62,12 @@ class _StartWidgetState extends State<StartWidget> {
   }
 
   void zufall(List<Widget> buttons) {
-    //TODO Tastendruck
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => ZufallsErgebnis()));
   }
 
-  void bearbeiten() {}
+  void bearbeiten() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => EditEntscheidungen()));
+  }
 }
