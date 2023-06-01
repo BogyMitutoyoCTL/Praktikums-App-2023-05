@@ -1,5 +1,6 @@
 import 'package:decision_making_app/Datenbank.dart';
 import 'package:decision_making_app/EditEntscheidungen.dart';
+import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
 import 'package:decision_making_app/main.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class _StartWidgetState extends State<StartWidget> {
             color: Colors.white,
             child: MaterialButton(
               onPressed: () {
-                zufall(buttons, frage);
+                zufall(buttons, frage, Entscheidung(frage));
               },
               textColor: Colors.black,
               child: Text(frage),
@@ -61,9 +62,9 @@ class _StartWidgetState extends State<StartWidget> {
     );
   }
 
-  void zufall(List<Widget> buttons, String frage) {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => ZufallsErgebnis(frage)));
+  void zufall(List<Widget> buttons, String frage, Entscheidung entscheidungen) {
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => ZufallsErgebnis(frage, entscheidungen)));
   }
 
   void bearbeiten() {
