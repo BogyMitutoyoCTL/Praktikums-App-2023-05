@@ -1,4 +1,8 @@
+import 'package:decision_making_app/Datenbank.dart';
+import 'package:decision_making_app/Entscheidung.dart';
 import 'package:flutter/material.dart';
+
+import 'main.dart';
 
 class EditEntscheidungen extends StatefulWidget {
   const EditEntscheidungen({Key? key}) : super(key: key);
@@ -9,17 +13,18 @@ class EditEntscheidungen extends StatefulWidget {
 
 class _EditEntscheidungenState extends State<EditEntscheidungen> {
   final List<TextEditingController> _controller = [];
-  List<String> _text = [];
+  final List<String> _text = [];
 
   _EditEntscheidungenState() {
-    for (int i = 0; i < 10; i++) {
-      _text.add("Lorem ipsum");
-
-      _controller.add(TextEditingController());
-      _controller[i].text = _text[i];
-      _controller[i].addListener(() {
+    for (Entscheidung entscheidung in datenbank.entscheidungen) {
+      String text = entscheidung.fragestellung;
+      _text.add(text);
+      TextEditingController controller = TextEditingController();
+      _controller.add(controller);
+      controller.text = text;
+      controller.addListener(() {
         setState(() {
-          _text[i] = _controller[i].text;
+          text = controller.text;
         });
       });
     }
@@ -52,8 +57,14 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
                   children: _Textfelder,
                 ),
               ))),
+      floatingActionButton: IconButton(
+        onPressed: plus,
+        icon: Icon(Icons.add),
+      ),
     );
   }
 
   void onDelete() {}
+
+  void plus() {}
 }
