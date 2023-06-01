@@ -1,4 +1,5 @@
 import 'package:decision_making_app/Datenbank.dart';
+import 'package:decision_making_app/ZufallsErgebnis.dart';
 import 'package:decision_making_app/main.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,9 @@ class _StartWidgetState extends State<StartWidget> {
           child: Container(
             color: Colors.white,
             child: MaterialButton(
-              onPressed: zufall,
+              onPressed: () {
+                zufall(buttons);
+              },
               textColor: Colors.black,
               child: Text(inhalt),
             ),
@@ -29,7 +32,6 @@ class _StartWidgetState extends State<StartWidget> {
         ),
       );
     }
-    //TODO Inhalte in Buttons
     return Scaffold(
       appBar: AppBar(
         //backgroundColor: Colors.black12,
@@ -53,8 +55,9 @@ class _StartWidgetState extends State<StartWidget> {
     );
   }
 
-  zufall() {
+  void zufall(List<Widget> buttons) {
     //TODO Tastendruck
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => ZufallsErgebnis()));
   }
-//TODO mit Lambdas Tastendruck machen
 }
