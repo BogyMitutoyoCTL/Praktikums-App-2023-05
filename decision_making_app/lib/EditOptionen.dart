@@ -1,3 +1,5 @@
+import 'package:decision_making_app/Entscheidung.dart';
+import 'package:decision_making_app/main.dart';
 import 'package:flutter/material.dart';
 
 class EditOptionen extends StatefulWidget {
@@ -8,27 +10,32 @@ class EditOptionen extends StatefulWidget {
 }
 
 class _EditOptionenState extends State<EditOptionen> {
-  final List<TextEditingController> _controller = [];
+  final List<TextEditingController> _controllers = [];
   List<String> _text = [];
 
   _EditOptionenState() {
-    for (int i = 0; i < 10; i++) {
-      _text.add("Lorem ipsum 2");
-
-      _controller.add(TextEditingController());
-      _controller[i].text = _text[i];
-      _controller[i].addListener(() {
+    var kochen = datenbank.entscheidungen[0];
+    for (int i = 0; i < kochen.optionen.length; i++) {
+      //_text.add("Lorem ipsum 2");
+      TextEditingController controller;
+      var textEditingController = TextEditingController();
+      _controllers.add(textEditingController);
+      textEditingController.text = kochen.optionen[i];
+      textEditingController.addListener(() {
         setState(() {
-          _text[i] = _controller[i].text;
+          kochen.optionen[i] = textEditingController.text;
         });
       });
     }
   }
 
+  //TODO Dispose -> maybe bei "onDelete"
+
   @override
   Widget build(BuildContext context) {
+    String optionName = "";
     final List<Widget> _Textfelder = [];
-    for (TextEditingController _controller in _controller) {
+    for (TextEditingController _controller in _controllers) {
       _Textfelder.add(Row(
         children: [
           Expanded(
@@ -37,13 +44,18 @@ class _EditOptionenState extends State<EditOptionen> {
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
+          IconButton(
+              onPressed: () {
+                onDelete(_controller);
+              },
+              icon: Icon(Icons.delete))
         ],
       ));
     }
     return Scaffold(
       appBar: AppBar(
         title: Center(
-          child: Text("Edit Optionen"),
+          child: Text(optionName),
         ),
       ),
       body: Center(
@@ -55,6 +67,16 @@ class _EditOptionenState extends State<EditOptionen> {
                   children: _Textfelder,
                 ),
               ))),
+      floatingActionButton: IconButton(onPressed: plus, icon: Icon(Icons.add)),
     );
+  }
+
+  void onDelete(TextEditingController _controller) {
+    _controllers.remove(_controller);
+    setState(() {});
+  }
+
+  void plus() {
+    //TODO Add Button
   }
 }
