@@ -10,6 +10,8 @@ class DecisionMakingApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Color schriftfarbe = Colors.white;
     return MaterialApp(
+      //   localizationsDelegates: AppLocalizations.LocalizationsDelegates,
+      //    supportedLocales: AppLocalizations.supportLocales,
       title: 'Decision Maker',
       theme: ThemeData(
           // This is the theme of your application.
