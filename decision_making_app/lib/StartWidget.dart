@@ -62,9 +62,10 @@ class _StartWidgetState extends State<StartWidget> {
     );
   }
 
-  void zufall(List<Widget> buttons, String frage, Entscheidung entscheidungen) {
+  void zufall(List<Widget> buttons, String frage, Entscheidung optionen) {
+    print(optionen);
     Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => ZufallsErgebnis(frage, entscheidungen)));
+        builder: (context) => ZufallsErgebnis(frage, optionen)));
   }
 
   void bearbeiten() {
