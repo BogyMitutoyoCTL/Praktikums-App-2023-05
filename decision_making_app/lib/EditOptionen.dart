@@ -2,32 +2,34 @@ import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/Option.dart';
 import 'package:decision_making_app/main.dart';
 import 'package:flutter/material.dart';
-import 'package:decision_making_app/ControllerUndOptionen.dart';
+import 'package:decision_making_app/ControllerUndOption.dart';
 
 class EditOptionen extends StatefulWidget {
-  final Entscheidung title;
+  final Entscheidung entscheidung;
 
-  const EditOptionen(this.title, {Key? key}) : super(key: key);
+  const EditOptionen(this.entscheidung, {Key? key}) : super(key: key);
 
   @override
   State<EditOptionen> createState() => _EditOptionenState();
 }
 
 class _EditOptionenState extends State<EditOptionen> {
-  final List<ControllerUndOptionen> controllers = [];
+  final List<ControllerUndOption> controllers = [];
 
   //TODO Dispose -> maybe bei "onDelete"
 
   @override
   void initState() {
     super.initState();
-    for (Option option in widget.title.optionen) {
-      ControllerUndOptionen CuO = ControllerUndOptionen();
+    for (Option option in widget.entscheidung.optionen) {
+      ControllerUndOption CuO = ControllerUndOption();
       controllers.add(CuO);
-      CuO.entscheidung = widget.title;
+      CuO.option = option;
       CuO.controller.text = option.text;
-      setState(() {
-        option.text = CuO.controller.text;
+      CuO.controller.addListener(() {
+        setState(() {
+          option.text = CuO.controller.text;
+        });
       });
     }
   }
@@ -36,7 +38,7 @@ class _EditOptionenState extends State<EditOptionen> {
   Widget build(BuildContext context) {
     String optionName = "";
     final List<Widget> _Textfelder = [];
-    for (ControllerUndOptionen _controller in controllers) {
+    for (ControllerUndOption _controller in controllers) {
       _Textfelder.add(Row(
         children: [
           Expanded(
@@ -72,12 +74,28 @@ class _EditOptionenState extends State<EditOptionen> {
     );
   }
 
-  void onDelete(ControllerUndOptionen controller) {
-    controllers.remove(controller);
-    setState(() {});
+  void onDelete(ControllerUndOption controller) {
+    var entscheidung = widget.entscheidung;
+    setState(() {
+      controllers.remove(controller);
+      int index = datenbank.entscheidungen.indexOf(entscheidung);
+      datenbank.entscheidungen[index].optionen.remove(controller.option);
+      controller.controller.dispose();
+    });
   }
 
   void plus() {
-    //TODO Add Button
+    var option = widget.entscheidung.add("");
+    setState(() {
+      ControllerUndOption CuO = ControllerUndOption();
+      controllers.add(CuO);
+      CuO.option = option;
+      CuO.controller.text = option.text;
+      CuO.controller.addListener(() {
+        setState(() {
+          option.text = CuO.controller.text;
+        });
+      });
+    });
   }
 }
