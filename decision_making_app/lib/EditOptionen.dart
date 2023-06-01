@@ -10,7 +10,7 @@ class EditOptionen extends StatefulWidget {
 }
 
 class _EditOptionenState extends State<EditOptionen> {
-  final List<TextEditingController> _controller = [];
+  final List<TextEditingController> _controllers = [];
   List<String> _text = [];
 
   _EditOptionenState() {
@@ -19,7 +19,7 @@ class _EditOptionenState extends State<EditOptionen> {
       //_text.add("Lorem ipsum 2");
       TextEditingController controller;
       var textEditingController = TextEditingController();
-      _controller.add(textEditingController);
+      _controllers.add(textEditingController);
       textEditingController.text = kochen.optionen[i];
       textEditingController.addListener(() {
         setState(() {
@@ -35,7 +35,7 @@ class _EditOptionenState extends State<EditOptionen> {
   Widget build(BuildContext context) {
     String optionName = "";
     final List<Widget> _Textfelder = [];
-    for (TextEditingController _controller in _controller) {
+    for (TextEditingController _controller in _controllers) {
       _Textfelder.add(Row(
         children: [
           Expanded(
@@ -44,7 +44,11 @@ class _EditOptionenState extends State<EditOptionen> {
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
-          IconButton(onPressed: onDelete, icon: Icon(Icons.delete))
+          IconButton(
+              onPressed: () {
+                onDelete(_controller);
+              },
+              icon: Icon(Icons.delete))
         ],
       ));
     }
@@ -66,10 +70,8 @@ class _EditOptionenState extends State<EditOptionen> {
     );
   }
 
-  void onDelete() {
-    var kochen = datenbank.entscheidungen[0];
-    for (var option in kochen.optionen) {
-      print(option);
-    }
+  void onDelete(TextEditingController _controller) {
+    _controllers.remove(_controller);
+    setState(() {});
   }
 }
