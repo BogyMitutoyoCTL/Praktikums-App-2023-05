@@ -1,46 +1,47 @@
 import 'package:decision_making_app/Entscheidung.dart';
+import 'package:decision_making_app/Option.dart';
 import 'package:decision_making_app/main.dart';
 import 'package:flutter/material.dart';
+import 'package:decision_making_app/ControllerUndOptionen.dart';
 
 class EditOptionen extends StatefulWidget {
-  const EditOptionen({Key? key}) : super(key: key);
+  final Entscheidung title;
+
+  const EditOptionen(this.title, {Key? key}) : super(key: key);
 
   @override
   State<EditOptionen> createState() => _EditOptionenState();
 }
 
 class _EditOptionenState extends State<EditOptionen> {
-  final List<TextEditingController> _controllers = [];
-  List<String> _text = [];
+  final List<ControllerUndOptionen> controllers = [];
 
-  _EditOptionenState() {
-    var kochen = datenbank.entscheidungen[0];
-    for (int i = 0; i < kochen.optionen.length; i++) {
-      //_text.add("Lorem ipsum 2");
-      TextEditingController controller;
-      var textEditingController = TextEditingController();
-      _controllers.add(textEditingController);
-      textEditingController.text = kochen.optionen[i];
-      textEditingController.addListener(() {
-        setState(() {
-          kochen.optionen[i] = textEditingController.text;
-        });
+  //TODO Dispose -> maybe bei "onDelete"
+
+  @override
+  void initState() {
+    super.initState();
+    for (Option option in widget.title.optionen) {
+      ControllerUndOptionen CuO = ControllerUndOptionen();
+      controllers.add(CuO);
+      CuO.entscheidung = widget.title;
+      CuO.controller.text = option.text;
+      setState(() {
+        option.text = CuO.controller.text;
       });
     }
   }
-
-  //TODO Dispose -> maybe bei "onDelete"
 
   @override
   Widget build(BuildContext context) {
     String optionName = "";
     final List<Widget> _Textfelder = [];
-    for (TextEditingController _controller in _controllers) {
+    for (ControllerUndOptionen _controller in controllers) {
       _Textfelder.add(Row(
         children: [
           Expanded(
             child: TextField(
-              controller: _controller,
+              controller: _controller.controller,
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
@@ -71,8 +72,8 @@ class _EditOptionenState extends State<EditOptionen> {
     );
   }
 
-  void onDelete(TextEditingController _controller) {
-    _controllers.remove(_controller);
+  void onDelete(ControllerUndOptionen controller) {
+    controllers.remove(controller);
     setState(() {});
   }
 
