@@ -13,7 +13,7 @@ class ZufallsErgebnis extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Center(
-            child: Text(frage),
+            child: Text("frage"),
           ),
         ),
         body: Center(
