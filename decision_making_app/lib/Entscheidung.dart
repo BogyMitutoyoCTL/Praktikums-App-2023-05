@@ -6,7 +6,9 @@ class Entscheidung {
 
   Entscheidung(this.fragestellung);
 
-  void add(String option) {
-    optionen.add(Option(option));
+  Option add(String option) {
+    var erg = Option(option);
+    optionen.add(erg);
+    return erg;
   }
 }

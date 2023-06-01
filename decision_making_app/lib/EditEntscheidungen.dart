@@ -3,7 +3,7 @@ import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/StartWidget.dart';
 import 'package:flutter/material.dart';
-import 'package:decision_making_app/Controller.dart';
+import 'package:decision_making_app/ControllerUndEntscheidung.dart';
 
 import 'main.dart';
 
