@@ -1,5 +1,6 @@
 import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/Option.dart';
+import 'package:decision_making_app/StartWidget.dart';
 import 'package:decision_making_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:decision_making_app/ControllerUndOption.dart';
@@ -58,8 +59,15 @@ class _EditOptionenState extends State<EditOptionen> {
     }
     return Scaffold(
       appBar: AppBar(
-        title: Center(
-          child: Text(optionName),
+        title: Row(
+          children: [
+            Expanded(
+              child: Center(
+                child: Text(optionName),
+              ),
+            ),
+            IconButton(onPressed: home, icon: Icon(Icons.home)),
+          ],
         ),
       ),
       body: Center(
@@ -102,5 +110,11 @@ class _EditOptionenState extends State<EditOptionen> {
         });
       });
     });
+  }
+
+  void home() {
+    //TODO return to start page
+    Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => StartWidget()));
   }
 }
