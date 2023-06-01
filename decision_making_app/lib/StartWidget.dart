@@ -26,7 +26,8 @@ class _StartWidgetState extends State<StartWidget> {
             color: Colors.white,
             child: MaterialButton(
               onPressed: () {
-                zufall(mainButtons, frage, datenbank.entscheidungen[i]);
+                zufaelligesErgebnis(
+                    mainButtons, frage, datenbank.entscheidungen[i]);
               },
               textColor: Colors.black,
               child: Text(frage),
@@ -66,7 +67,8 @@ class _StartWidgetState extends State<StartWidget> {
     );
   }
 
-  void zufall(List<Widget> buttons, String frage, Entscheidung optionen) {
+  void zufaelligesErgebnis(
+      List<Widget> buttons, String frage, Entscheidung optionen) {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => ZufallsErgebnis(frage, optionen)));
   }

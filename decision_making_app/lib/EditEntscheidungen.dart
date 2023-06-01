@@ -15,17 +15,20 @@ class EditEntscheidungen extends StatefulWidget {
 }
 
 class _EditEntscheidungenState extends State<EditEntscheidungen> {
-  final List<ControllerUndEntscheidung> controllers = [];
+  final List<ControllerUndEntscheidung> controllerUndEntscheidung = [];
 
   _EditEntscheidungenState() {
     for (Entscheidung entscheidung in datenbank.entscheidungen) {
-      ControllerUndEntscheidung CuE = ControllerUndEntscheidung();
-      controllers.add(CuE);
-      CuE.entscheidung = entscheidung;
-      CuE.controller.text = CuE.entscheidung.fragestellung;
-      CuE.controller.addListener(() {
+      ControllerUndEntscheidung textontrollerUndEntscheidung =
+          ControllerUndEntscheidung();
+      controllerUndEntscheidung.add(textontrollerUndEntscheidung);
+      textontrollerUndEntscheidung.entscheidung = entscheidung;
+      textontrollerUndEntscheidung.controller.text =
+          textontrollerUndEntscheidung.entscheidung.fragestellung;
+      textontrollerUndEntscheidung.controller.addListener(() {
         setState(() {
-          CuE.entscheidung.fragestellung = CuE.controller.text;
+          textontrollerUndEntscheidung.entscheidung.fragestellung =
+              textontrollerUndEntscheidung.controller.text;
         });
       });
     }
@@ -33,14 +36,15 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _Textfelder = [];
-    for (ControllerUndEntscheidung con in controllers) {
-      var loeschen = () => onDelete(con);
-      _Textfelder.add(Row(
+    final List<Widget> textfelder = [];
+    for (ControllerUndEntscheidung controlUndEntscheidung
+        in controllerUndEntscheidung) {
+      var loeschen = () => onDelete(controlUndEntscheidung);
+      textfelder.add(Row(
         children: [
           Expanded(
             child: TextField(
-              controller: con.controller,
+              controller: controlUndEntscheidung.controller,
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
@@ -48,7 +52,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
             children: [
               IconButton(
                   onPressed: () {
-                    bearbeiten(con.entscheidung);
+                    bearbeiten(controlUndEntscheidung.entscheidung);
                   },
                   icon: Icon(Icons.edit)),
               IconButton(onPressed: loeschen, icon: Icon(Icons.delete))
@@ -74,7 +78,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
               child: Scrollbar(
                 thumbVisibility: true,
                 child: ListView(
-                  children: _Textfelder,
+                  children: textfelder,
                 ),
               ))),
       floatingActionButton: FloatingActionButton(
@@ -85,25 +89,28 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     );
   }
 
-  void onDelete(ControllerUndEntscheidung con) {
+  void onDelete(ControllerUndEntscheidung controlUndEntscheidung) {
     setState(() {
-      datenbank.entscheidungen.remove(con.entscheidung);
+      datenbank.entscheidungen.remove(controlUndEntscheidung.entscheidung);
 
-      controllers.remove(con);
-      con.controller.dispose();
+      controllerUndEntscheidung.remove(controlUndEntscheidung);
+      controlUndEntscheidung.controller.dispose();
     });
   }
 
   void plus() {
-    var entscheidung = datenbank.add("");
+    var neueEntscheidung = datenbank.add("");
     setState(() {
-      ControllerUndEntscheidung CuS = ControllerUndEntscheidung();
-      controllers.add(CuS);
-      CuS.entscheidung = entscheidung;
-      CuS.controller.text = CuS.entscheidung.fragestellung;
-      CuS.controller.addListener(() {
+      ControllerUndEntscheidung controlUndEntscheidung =
+          ControllerUndEntscheidung();
+      controllerUndEntscheidung.add(controlUndEntscheidung);
+      controlUndEntscheidung.entscheidung = neueEntscheidung;
+      controlUndEntscheidung.controller.text =
+          controlUndEntscheidung.entscheidung.fragestellung;
+      controlUndEntscheidung.controller.addListener(() {
         setState(() {
-          CuS.entscheidung.fragestellung = CuS.controller.text;
+          controlUndEntscheidung.entscheidung.fragestellung =
+              controlUndEntscheidung.controller.text;
         });
       });
     });
