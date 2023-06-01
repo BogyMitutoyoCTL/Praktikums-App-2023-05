@@ -1,6 +1,7 @@
 import 'package:decision_making_app/Datenbank.dart';
 import 'package:decision_making_app/Entscheidung.dart';
 import 'package:flutter/material.dart';
+import 'package:decision_making_app/Controller.dart';
 
 import 'main.dart';
 
@@ -12,19 +13,17 @@ class EditEntscheidungen extends StatefulWidget {
 }
 
 class _EditEntscheidungenState extends State<EditEntscheidungen> {
-  final List<TextEditingController> _controller = [];
-  final List<String> _text = [];
+  final List<ControllerUndString> controllers = [];
 
   _EditEntscheidungenState() {
     for (Entscheidung entscheidung in datenbank.entscheidungen) {
-      String text = entscheidung.fragestellung;
-      _text.add(text);
-      TextEditingController controller = TextEditingController();
-      _controller.add(controller);
-      controller.text = text;
-      controller.addListener(() {
+      ControllerUndString CuS = ControllerUndString();
+      controllers.add(CuS);
+      CuS.entscheidung.fragestellung = entscheidung.fragestellung;
+      CuS.controller.text = CuS.entscheidung.fragestellung;
+      CuS.controller.addListener(() {
         setState(() {
-          text = controller.text;
+          CuS.entscheidung.fragestellung = CuS.controller.text;
         });
       });
     }
@@ -33,19 +32,21 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> _Textfelder = [];
-    for (TextEditingController _controller in _controller) {
+    for (ControllerUndString con in controllers) {
+      var loeschen = () => onDelete(con);
       _Textfelder.add(Row(
         children: [
           Expanded(
             child: TextField(
-              controller: _controller,
+              controller: con.controller,
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
-          IconButton(onPressed: onDelete, icon: Icon(Icons.delete))
+          IconButton(onPressed: loeschen, icon: Icon(Icons.delete))
         ],
       ));
     }
+
     return Scaffold(
       appBar: AppBar(title: Center(child: Text("Entscheidungen"))),
       body: Center(
@@ -64,7 +65,20 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     );
   }
 
-  void onDelete() {}
+  void onDelete(ControllerUndString con) {}
 
-  void plus() {}
+  void plus() {
+    var entscheidung = datenbank.add("");
+    setState(() {
+      ControllerUndString CuS = ControllerUndString();
+      controllers.add(CuS);
+      CuS.entscheidung = entscheidung;
+      CuS.controller.text = CuS.entscheidung.fragestellung;
+      CuS.controller.addListener(() {
+        setState(() {
+          CuS.entscheidung.fragestellung = CuS.controller.text;
+        });
+      });
+    });
+  }
 }
