@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:decision_making_app/Datenbank.dart';
 import 'package:decision_making_app/EditEntscheidungen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
@@ -69,6 +71,11 @@ class _StartWidgetState extends State<StartWidget> {
 
   void bearbeiten() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => EditEntscheidungen()));
+        .push(MaterialPageRoute(builder: (context) => EditEntscheidungen()))
+        .then(refresh);
+  }
+
+  FutureOr refresh(value) {
+    setState(() {});
   }
 }

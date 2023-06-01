@@ -43,10 +43,7 @@ class _EditOptionenState extends State<EditOptionen> {
           Expanded(
             child: TextField(
               controller: _controller.controller,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .displaySmall,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
           IconButton(
@@ -113,8 +110,7 @@ class _EditOptionenState extends State<EditOptionen> {
   }
 
   void home() {
-    //TODO return to start page
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => StartWidget()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => StartWidget()));
   }
 }

@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 import 'dart:math';
 import 'package:decision_making_app/Entscheidung.dart';
-import 'package:decision_making_app/Option.dart';
 import 'package:flutter/material.dart';
 
 class ZufallsErgebnis extends StatelessWidget {
@@ -9,8 +8,8 @@ class ZufallsErgebnis extends StatelessWidget {
   final Entscheidung entscheidungen;
 
   const ZufallsErgebnis(
-    String this.frage,
-    Entscheidung this.entscheidungen, {
+    this.frage,
+    this.entscheidungen, {
     Key? key,
   }) : super(key: key);
 
@@ -30,7 +29,7 @@ class ZufallsErgebnis extends StatelessWidget {
 
   String zufallsergebnis() {
     var laenge = entscheidungen.optionen.length;
-    Random random = new Random();
+    Random random = Random();
     int randomNumber = random.nextInt(laenge); //from 0 to laenge-1
     String ergebnis = entscheidungen.optionen[randomNumber].toString();
     return ergebnis;
