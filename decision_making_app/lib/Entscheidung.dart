@@ -1,4 +1,5 @@
 import 'package:decision_making_app/Option.dart';
+import 'package:collection/collection.dart';
 
 class Entscheidung {
   String fragestellung;
@@ -20,6 +21,16 @@ class Entscheidung {
         "optionen": optionen,
         "fragestellung": fragestellung,
       };
+
+  @override
+  bool operator ==(Object other) {
+    // TODO: implement ==
+    if (super == other) return true;
+    if (other is! Entscheidung) return false;
+    if (other.optionen.equals(this.optionen) &&
+        other.fragestellung == this.fragestellung) return true;
+    return false;
+  }
 
   @override
   String toString() {
