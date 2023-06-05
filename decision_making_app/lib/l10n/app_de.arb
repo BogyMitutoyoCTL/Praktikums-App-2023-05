@@ -1,9 +1,10 @@
 {
-    "mainPage": "Entscheidungshilfe",
-    "decisions": "Entscheidungen",
-    "options": "Optionen",
-    "exit": "Möchten Sie die App verlassen?",
-    "yes": "Ja",
-    "no": "Nein",
-    "meldung": "Sind Sie sicher?"
+  "mainPage": "Entscheidungshilfe",
+  "decisions": "Entscheidungen",
+  "options": "Optionen",
+  "exit": "Möchten Sie die App verlassen?",
+  "yes": "Ja",
+  "no": "Nein",
+  "meldung": "Sind Sie sicher?",
+  "pressToContinue": "Weiter"
 }
