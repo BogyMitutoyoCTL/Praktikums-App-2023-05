@@ -12,6 +12,10 @@ class Entscheidung {
     return erg;
   }
 
+  Entscheidung.fromJson(Map<String, dynamic> json)
+      : fragestellung = json["fragestellung"],
+        optionen = json["optionen"];
+
   Map<String, dynamic> toJson() => {
         "optionen": optionen,
         "fragestellung": fragestellung,
