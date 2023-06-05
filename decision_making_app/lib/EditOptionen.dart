@@ -6,28 +6,29 @@ import 'package:flutter/material.dart';
 import 'package:decision_making_app/ControllerUndOption.dart';
 
 class EditOptionen extends StatefulWidget {
-  final Entscheidung entscheidung;
+  final Entscheidung bearbeiteteEntscheidung;
 
-  const EditOptionen(this.entscheidung, {Key? key}) : super(key: key);
+  const EditOptionen(this.bearbeiteteEntscheidung, {Key? key})
+      : super(key: key);
 
   @override
   State<EditOptionen> createState() => _EditOptionenState();
 }
 
 class _EditOptionenState extends State<EditOptionen> {
-  final List<ControllerUndOption> controllers = [];
+  final List<ControllerUndOption> controllersMitOption = [];
 
   @override
   void initState() {
     super.initState();
-    for (Option option in widget.entscheidung.optionen) {
-      ControllerUndOption CuO = ControllerUndOption();
-      controllers.add(CuO);
-      CuO.option = option;
-      CuO.controller.text = option.text;
-      CuO.controller.addListener(() {
+    for (Option option in widget.bearbeiteteEntscheidung.optionen) {
+      ControllerUndOption controllerMitOption = ControllerUndOption();
+      controllersMitOption.add(controllerMitOption);
+      controllerMitOption.option = option;
+      controllerMitOption.controller.text = option.text;
+      controllerMitOption.controller.addListener(() {
         setState(() {
-          option.text = CuO.controller.text;
+          option.text = controllerMitOption.controller.text;
         });
       });
     }
@@ -35,19 +36,19 @@ class _EditOptionenState extends State<EditOptionen> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Widget> _Textfelder = [];
-    for (ControllerUndOption _controller in controllers) {
-      _Textfelder.add(Row(
+    final List<Widget> textfelder = [];
+    for (ControllerUndOption controllerMitOption in controllersMitOption) {
+      textfelder.add(Row(
         children: [
           Expanded(
             child: TextField(
-              controller: _controller.controller,
+              controller: controllerMitOption.controller,
               style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
           IconButton(
               onPressed: () {
-                onDelete(_controller);
+                onDelete(controllerMitOption);
               },
               icon: Icon(Icons.delete))
         ],
@@ -72,7 +73,7 @@ class _EditOptionenState extends State<EditOptionen> {
               child: Scrollbar(
                 thumbVisibility: true,
                 child: ListView(
-                  children: _Textfelder,
+                  children: textfelder,
                 ),
               ))),
       floatingActionButton: FloatingActionButton(
@@ -83,26 +84,26 @@ class _EditOptionenState extends State<EditOptionen> {
     );
   }
 
-  void onDelete(ControllerUndOption controller) {
-    var entscheidung = widget.entscheidung;
+  void onDelete(ControllerUndOption controllerUndOption) {
+    var entscheidung = widget.bearbeiteteEntscheidung;
     setState(() {
-      entscheidung.optionen.remove(controller.option);
+      entscheidung.optionen.remove(controllerUndOption.option);
 
-      controllers.remove(controller);
-      controller.controller.dispose();
+      controllersMitOption.remove(controllerUndOption);
+      controllerUndOption.controller.dispose();
     });
   }
 
   void plus() {
-    var option = widget.entscheidung.add("");
+    var option = widget.bearbeiteteEntscheidung.add("");
     setState(() {
-      ControllerUndOption CuO = ControllerUndOption();
-      controllers.add(CuO);
-      CuO.option = option;
-      CuO.controller.text = option.text;
-      CuO.controller.addListener(() {
+      ControllerUndOption controlUndOption = ControllerUndOption();
+      controllersMitOption.add(controlUndOption);
+      controlUndOption.option = option;
+      controlUndOption.controller.text = option.text;
+      controlUndOption.controller.addListener(() {
         setState(() {
-          option.text = CuO.controller.text;
+          option.text = controlUndOption.controller.text;
         });
       });
     });

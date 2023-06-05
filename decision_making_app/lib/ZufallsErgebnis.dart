@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 
 class ZufallsErgebnis extends StatelessWidget {
   final String frage;
-  final Entscheidung entscheidungen;
+  final Entscheidung entscheidung;
 
   const ZufallsErgebnis(
     this.frage,
-    this.entscheidungen, {
+    this.entscheidung, {
     Key? key,
   }) : super(key: key);
 
@@ -28,10 +28,10 @@ class ZufallsErgebnis extends StatelessWidget {
   }
 
   String zufallsergebnis() {
-    var laenge = entscheidungen.optionen.length;
+    var laenge = entscheidung.optionen.length;
     Random random = Random();
     int randomNumber = random.nextInt(laenge); //from 0 to laenge-1
-    String ergebnis = entscheidungen.optionen[randomNumber].toString();
+    String ergebnis = entscheidung.optionen[randomNumber].toString();
     return ergebnis;
   }
 }
