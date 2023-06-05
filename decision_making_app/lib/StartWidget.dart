@@ -14,6 +14,27 @@ class StartWidget extends StatefulWidget {
 }
 
 class _StartWidgetState extends State<StartWidget> {
+  Future<bool> _onWillPop() async {
+    return (await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text('Are you sure?'),
+            content: Text('Do you want to exit the App?'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text('No'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: Text('Yes'),
+              ),
+            ],
+          ),
+        )) ??
+        false;
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> mainButtons = [];
@@ -36,34 +57,35 @@ class _StartWidgetState extends State<StartWidget> {
         ),
       );
     }
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        //backgroundColor: Colors.black12,
-        title: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Row(
-              children: [
-                Expanded(
-                    child: Center(
-                        child: Text(AppLocalizations.of(context)!.mainPage))),
-                IconButton(onPressed: bearbeiten, icon: Icon(Icons.edit)),
-              ],
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          //backgroundColor: Colors.black12,
+          title: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Center(
+                          child: Text(AppLocalizations.of(context)!.mainPage))),
+                  IconButton(onPressed: bearbeiten, icon: Icon(Icons.edit)),
+                ],
+              ),
+            ),
+          ),
+        ),
+        body: Center(
+          child: Scrollbar(
+            thumbVisibility: true,
+            child: ListView(
+              children: mainButtons,
             ),
           ),
         ),
       ),
-      body: Center(
-        child: Scrollbar(
-          thumbVisibility: true,
-          child: ListView(
-            children: mainButtons,
-          ),
-        ),
-      ),
-
-      //backgroundColor: Colors.black26,
     );
   }
 
