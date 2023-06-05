@@ -14,6 +14,27 @@ class StartWidget extends StatefulWidget {
 }
 
 class _StartWidgetState extends State<StartWidget> {
+  Future<bool> _onWillPop() async {
+    return (await showDialog(
+          context: context,
+          builder: (context) => AlertDialog(
+            title: Text(AppLocalizations.of(context)!.meldung),
+            content: Text(AppLocalizations.of(context)!.exit),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: Text(AppLocalizations.of(context)!.no),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: Text(AppLocalizations.of(context)!.yes),
+              ),
+            ],
+          ),
+        )) ??
+        false;
+  }
+
   @override
   Widget build(BuildContext context) {
     List<Widget> mainButtons = [];
@@ -36,34 +57,39 @@ class _StartWidgetState extends State<StartWidget> {
         ),
       );
     }
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        //backgroundColor: Colors.black12,
-        title: Center(
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Row(
-              children: [
-                Expanded(
-                    child: Center(
-                        child: Text(AppLocalizations.of(context)!.mainPage))),
-                IconButton(onPressed: bearbeiten, icon: Icon(Icons.edit)),
-              ],
+    return WillPopScope(
+      onWillPop: _onWillPop,
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          //backgroundColor: Colors.black12,
+          title: Center(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Center(
+                          child: Text(AppLocalizations.of(context)!.mainPage))),
+                  IconButton(onPressed: bearbeiten, icon: Icon(Icons.edit)),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-      body: Center(
-        child: Scrollbar(
-          thumbVisibility: true,
-          child: ListView(
-            children: mainButtons,
+        body: Center(
+          child: Scrollbar(
+            thumbVisibility: true,
+            child: ListView(
+              children: mainButtons,
+            ),
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+            onPressed: changeLanguage,
+            backgroundColor: Colors.white,
+            child: const Icon(Icons.language)),
       ),
-
-      //backgroundColor: Colors.black26,
     );
   }
 
@@ -82,4 +108,6 @@ class _StartWidgetState extends State<StartWidget> {
   FutureOr refresh(value) {
     setState(() {});
   }
+
+  void changeLanguage() {}
 }

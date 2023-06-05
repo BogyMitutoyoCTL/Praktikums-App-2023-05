@@ -12,6 +12,11 @@ class Entscheidung {
     return erg;
   }
 
+  Map<String, dynamic> toJson() => {
+        "optionen": optionen,
+        "fragestellung": fragestellung,
+      };
+
   @override
   String toString() {
     String liste = "";
