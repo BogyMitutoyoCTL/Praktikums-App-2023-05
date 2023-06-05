@@ -5,6 +5,8 @@ class Option {
 
   Option(this.text);
 
+  Option.fromJson(Map<String, dynamic> json) : text = json["option"] {}
+
   @override
   String toString() {
     return text;
