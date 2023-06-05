@@ -18,16 +18,16 @@ class _StartWidgetState extends State<StartWidget> {
     return (await showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text('Are you sure?'),
-            content: Text('Do you want to exit the App?'),
+            title: Text(AppLocalizations.of(context)!.meldung),
+            content: Text(AppLocalizations.of(context)!.exit),
             actions: <Widget>[
               TextButton(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: Text('No'),
+                child: Text(AppLocalizations.of(context)!.no),
               ),
               TextButton(
                 onPressed: () => Navigator.of(context).pop(true),
-                child: Text('Yes'),
+                child: Text(AppLocalizations.of(context)!.yes),
               ),
             ],
           ),
