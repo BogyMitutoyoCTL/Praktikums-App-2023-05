@@ -6,4 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: subosito/flutter-action@v1
-      - run: cd .\decision_making_app\;flutter test;cd ..
+      - run: cd .\decision_making_app\
+      - run: flutter test
+      - run: cd ..
