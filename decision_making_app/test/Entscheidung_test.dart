@@ -50,7 +50,7 @@ void main() {
       b.optionen.add(Option("Nudeln"));
       print(a.fragestellung);
       print(b.fragestellung);
-      expect(a, b);
+      expect(DeepCollectionEquality().equals(a, b), true);
     });
   });
 }
