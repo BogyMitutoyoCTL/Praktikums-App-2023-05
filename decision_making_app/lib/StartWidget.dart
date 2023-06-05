@@ -85,6 +85,10 @@ class _StartWidgetState extends State<StartWidget> {
             ),
           ),
         ),
+        floatingActionButton: FloatingActionButton(
+            onPressed: changeLanguage,
+            backgroundColor: Colors.white,
+            child: const Icon(Icons.language)),
       ),
     );
   }
@@ -104,4 +108,6 @@ class _StartWidgetState extends State<StartWidget> {
   FutureOr refresh(value) {
     setState(() {});
   }
+
+  void changeLanguage() {}
 }
