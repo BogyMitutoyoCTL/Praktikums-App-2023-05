@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class Option {
   String text = "";
 
@@ -7,4 +9,8 @@ class Option {
   String toString() {
     return text;
   }
+
+  Map<String, dynamic> toJson() => {
+        "option": text,
+      };
 }
