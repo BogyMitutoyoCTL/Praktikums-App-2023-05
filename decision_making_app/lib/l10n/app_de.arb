@@ -4,5 +4,6 @@
     "options": "Optionen",
     "exit": "Möchten Sie die App verlassen?",
     "yes": "Ja",
-    "no": "Nein"
+    "no": "Nein",
+    "title": "Sind Sie sicher?"
 }

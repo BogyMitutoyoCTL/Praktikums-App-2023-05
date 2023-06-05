@@ -4,5 +4,6 @@
     "decisions": "Decisions",
     "exit": "Do you want to exit the App?",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "title": "Are you sure?"
 }
