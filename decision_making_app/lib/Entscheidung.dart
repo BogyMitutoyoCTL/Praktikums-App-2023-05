@@ -14,7 +14,9 @@ class Entscheidung {
 
   Entscheidung.fromJson(Map<String, dynamic> json)
       : fragestellung = json["fragestellung"],
-        optionen = json["optionen"];
+        optionen = []{
+    optionen = List<Option>.from(json['optionen'].map((e) => Option.fromJson(e)).toList());
+  }
 
   Map<String, dynamic> toJson() => {
         "optionen": optionen,
