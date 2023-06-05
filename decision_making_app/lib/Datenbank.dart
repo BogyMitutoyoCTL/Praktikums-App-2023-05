@@ -9,7 +9,7 @@ class Datenbank {
       : entscheidungen = json['entscheidungen'];
 
   Map<String, dynamic> toJson() => {
-    'entscheidungen' : entscheidungen
+    "entscheidungen" : entscheidungen
   };
 
   Entscheidung add(String fragestellung) {
