@@ -16,6 +16,5 @@ void main() {
   sport.add("Fußball");
   sport.add("Schwimmen");
 
-  print(jsonEncode(kochen));
-  // runApp(const DecisionMakingApp());
+  runApp(const DecisionMakingApp());
 }
