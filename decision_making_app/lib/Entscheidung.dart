@@ -15,7 +15,7 @@ class Entscheidung {
 
   Entscheidung.fromJson(Map<String, dynamic> json)
       : fragestellung = json["fragestellung"],
-        optionen = []{
+        optionen = [] {
     optionen = List<Option>.from(json['optionen'].map((e) => Option.fromJson(e)).toList());
   }
 
@@ -26,11 +26,9 @@ class Entscheidung {
 
   @override
   bool operator ==(Object other) {
-    // TODO: implement ==
     if (super == other) return true;
     if (other is! Entscheidung) return false;
-    if (other.optionen.equals(this.optionen) &&
-        other.fragestellung == this.fragestellung) return true;
+    if (DeepCollectionEquality().equals(optionen, other.optionen) && other.fragestellung == this.fragestellung) return true;
     return false;
   }
 
