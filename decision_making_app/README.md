@@ -1,4 +1,5 @@
 # decision_making_app
+<a href="https://github.com/BogyMitutoyoCTL/Praktikums-App-2023-05/actions"><img src="https://github.com/BogyMitutoyoCTL/Praktikums-App-2023-05/workflows/test-decision-making-app/badge.svg" alt="Build Status"></a>
 
 Decision-Making App
 
