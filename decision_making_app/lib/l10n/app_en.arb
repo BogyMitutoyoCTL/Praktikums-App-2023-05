@@ -1,5 +1,8 @@
 {
     "mainPage": "Decision Maker",
     "options": "Options",
-    "decisions": "Decisions"
+    "decisions": "Decisions",
+    "exit": "Do you want to exit the App?",
+    "yes": "Yes",
+    "no": "No"
 }

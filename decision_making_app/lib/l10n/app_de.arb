@@ -1,5 +1,8 @@
 {
     "mainPage": "Entscheidungshilfe",
     "decisions": "Entscheidungen",
-    "options": "Optionen"
+    "options": "Optionen",
+    "exit": "Möchten Sie die App verlassen?",
+    "yes": "Ja",
+    "no": "Nein"
 }
