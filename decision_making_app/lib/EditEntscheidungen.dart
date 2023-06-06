@@ -100,23 +100,31 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   }
 
   void plus() {
-    var neueEntscheidung = datenbank.add("");
-    setState(() {
-      ControllerUndEntscheidung controlUndEntscheidung =
-          ControllerUndEntscheidung();
-      controllerUndEntscheidung.add(controlUndEntscheidung);
-      controlUndEntscheidung.entscheidung = neueEntscheidung;
-      controlUndEntscheidung.entscheidung.optionen.add(Option("Option 1"));
-      controlUndEntscheidung.entscheidung.optionen.add(Option("Option 2"));
-      controlUndEntscheidung.controller.text =
-          controlUndEntscheidung.entscheidung.fragestellung;
-      controlUndEntscheidung.controller.addListener(() {
-        setState(() {
-          controlUndEntscheidung.entscheidung.fragestellung =
-              controlUndEntscheidung.controller.text;
+    bool allow = true;
+    for (int i = 0; i < controllerUndEntscheidung.length; i++) {
+      if (controllerUndEntscheidung[i].entscheidung.fragestellung == "") {
+        allow = false;
+      }
+    }
+    if (allow == true) {
+      var neueEntscheidung = datenbank.add("");
+      setState(() {
+        ControllerUndEntscheidung controlUndEntscheidung =
+            ControllerUndEntscheidung();
+        controllerUndEntscheidung.add(controlUndEntscheidung);
+        controlUndEntscheidung.entscheidung = neueEntscheidung;
+        controlUndEntscheidung.entscheidung.optionen.add(Option("Option 1"));
+        controlUndEntscheidung.entscheidung.optionen.add(Option("Option 2"));
+        controlUndEntscheidung.controller.text =
+            controlUndEntscheidung.entscheidung.fragestellung;
+        controlUndEntscheidung.controller.addListener(() {
+          setState(() {
+            controlUndEntscheidung.entscheidung.fragestellung =
+                controlUndEntscheidung.controller.text;
+          });
         });
       });
-    });
+    }
   }
 
   void home() {
