@@ -7,5 +7,7 @@
   "no": "Nein",
   "meldung": "Sind Sie sicher?",
   "pressToContinue": "Weiter",
-  "appTitel": "Entscheidungshilfe"
+  "appTitel": "Entscheidungshilfe",
+  "noOption": "Keine Optionen verfügbar",
+  "oneOption": "Nur eine Option verfügbar:"
 }
