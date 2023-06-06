@@ -10,5 +10,6 @@
   "appTitel": "Entscheidungshilfe",
   "noOption": "Keine Optionen verfügbar",
   "oneOption": "Nur eine Option verfügbar: ",
-  "onlyEmpty": "Es sind keine gültigen Optionen verfügbar"
+  "onlyEmpty": "Es sind keine gültigen Optionen verfügbar",
+  "about": "Über"
 }
