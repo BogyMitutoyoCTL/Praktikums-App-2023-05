@@ -15,12 +15,36 @@ void main() {
       expect(data.entscheidungen.length, 2);
     });
 
-    test('Encode json', () {
+    test('Datenbank_equality', () {
+      final expected = Datenbank();
+      expected.add("A");
+      expected.add("B");
+
+      final actual = Datenbank();
+      actual.add("A");
+      actual.add("B");
+
+      expect(expected, actual);
+    });
+
+    test('Datenbank_equality_unordered', () {
+      final expected = Datenbank();
+      expected.add("A");
+      expected.add("B");
+
+      final actual = Datenbank();
+      actual.add("B");
+      actual.add("A");
+
+      expect(expected == actual, false);
+    });
+
+
+    test('encode_json', () {
       final data = Datenbank();
       data.add("A");
       data.add("B");
       var json = jsonDecode(jsonEncode(data));
-      print(json);
 
       var expected = jsonDecode(r'''{
 "entscheidungen": [
@@ -34,6 +58,59 @@ void main() {
   }
 ]}''');
       expect(DeepCollectionEquality.unordered().equals(json, expected), true);
+    });
+
+
+    test('decode_json', () {
+      final expected = Datenbank();
+      expected.add("A");
+      expected.add("B");
+
+      var input = r'''{
+"entscheidungen": [
+  {
+    "optionen": [],
+    "fragestellung": "A"
+  },
+  {
+    "fragestellung": "B",
+    "optionen": []
+  }
+]}''';
+
+      Map<String, dynamic> json = jsonDecode(input);
+      var actual = Datenbank.fromJson(json);
+
+      expect(expected, actual);
+    });
+
+    test('decode_large_json', () {
+      final expected = Datenbank();
+      expected.add("A");
+      expected.entscheidungen[0].add("C");
+      expected.add("B");
+      expected.entscheidungen[1].add("D");
+
+      var input = r'''{
+"entscheidungen": [
+  {
+    "optionen": [
+      {"option": "C"}
+    ],
+    "fragestellung": "A"
+  },
+  {
+    "optionen": [
+      {"option": "D"}
+    ],
+    "fragestellung": "B"
+  }
+]}''';
+
+      Map<String, dynamic> json = jsonDecode(input);
+      var actual = Datenbank.fromJson(json);
+
+      expect(expected, actual);
     });
   });
 }
