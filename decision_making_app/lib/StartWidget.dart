@@ -89,10 +89,10 @@ class _StartWidgetState extends State<StartWidget> {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
+        /* floatingActionButton: FloatingActionButton(
             onPressed: changeLanguage,
             backgroundColor: Colors.white,
-            child: const Icon(Icons.language)),
+            child: const Icon(Icons.language)),*/
       ),
     );
   }
