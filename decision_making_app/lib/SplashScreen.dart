@@ -15,18 +15,30 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Timer? timer;
+
   @override
   Widget build(BuildContext context) {
+    timer = Timer(Duration(seconds: 5), () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => StartWidget(),
+        ),
+      );
+    });
+    timer?.cancel();
     return Scaffold(
-        body: TextButton(
-            //TODO change normal and buttons background color
-            onPressed: weiter,
-            backgroundcolor: Colors.white,
-            child: Text(AppLocalizations.of(context)!.pressToContinue)));
-  }
-
-  void weiter() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => StartWidget()));
+      body: Center(
+          child: Row(
+        children: [
+          Icon(
+            Icons.shuffle_sharp,
+            size: 100,
+          ),
+          Text(AppLocalizations.of(context)!.appTitel),
+        ],
+      )),
+    );
   }
 }

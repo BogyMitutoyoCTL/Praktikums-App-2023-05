@@ -6,5 +6,6 @@
     "yes": "Yes",
     "no": "No",
     "meldung": "Are you sure?",
-    "pressToContinue": "Press to continue"
+    "pressToContinue": "Press to continue",
+    "appTitel": "Decision Making App"
 }

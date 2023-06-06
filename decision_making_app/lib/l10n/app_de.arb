@@ -6,5 +6,6 @@
   "yes": "Ja",
   "no": "Nein",
   "meldung": "Sind Sie sicher?",
-  "pressToContinue": "Weiter"
+  "pressToContinue": "Weiter",
+  "appTitel": "Entscheidungshilfe"
 }
