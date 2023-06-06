@@ -85,6 +85,7 @@ class _EditOptionenState extends State<EditOptionen> {
   }
 
   void onDelete(ControllerUndOption controllerUndOption) {
+    print("ondelete erreicht");
     var entscheidung = widget.bearbeiteteEntscheidung;
     setState(() {
       entscheidung.optionen.remove(controllerUndOption.option);
@@ -109,7 +110,21 @@ class _EditOptionenState extends State<EditOptionen> {
     });
   }
 
+  void checkEmpty() {
+    print("checkEmpty erreicht");
+    print(controllersMitOption.length);
+    for (int i = 0; i < controllersMitOption.length; i++) {
+      print("for erreicht");
+      if (controllersMitOption[i].option.toString() == "" ||
+          controllersMitOption[i].option.toString() == null) {
+        print("if erreicht");
+        onDelete(controllersMitOption[i]);
+      }
+    }
+  }
+
   void home() {
+    checkEmpty();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => StartWidget()));
   }
