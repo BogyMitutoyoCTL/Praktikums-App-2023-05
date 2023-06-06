@@ -42,6 +42,7 @@ class _StartWidgetState extends State<StartWidget> {
 
   @override
   Widget build(BuildContext context) {
+    save();
     List<Widget> mainButtons = [];
     for (int i = 0; i < datenbank.entscheidungen.length; i++) {
       var frage = datenbank.entscheidungen[i].fragestellung;
@@ -117,5 +118,9 @@ class _StartWidgetState extends State<StartWidget> {
   Future<void> changeLanguage() async {
     datenbank = await speichern.readData();
     setState(() {});
+  }
+
+  Future<void> save() async {
+    await speichern.writeData(datenbank);
   }
 }

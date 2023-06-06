@@ -19,13 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    timer = Timer(Duration(seconds: 3), () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => StartWidget(),
-        ),
-      );
+    timer = Timer(Duration(seconds: 3), () async {
+      await wechseln();
     });
     return Scaffold(
         body: Container(
@@ -43,5 +38,15 @@ class _SplashScreenState extends State<SplashScreen> {
         ],
       ),
     ));
+  }
+
+  Future<void> wechseln() async {
+    datenbank = await speichern.readData();
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => StartWidget(),
+      ),
+    );
   }
 }
