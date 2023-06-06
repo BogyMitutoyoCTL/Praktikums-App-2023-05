@@ -111,20 +111,31 @@ class _EditOptionenState extends State<EditOptionen> {
   }
 
   void checkEmpty() {
-    print("checkEmpty erreicht");
-    print(controllersMitOption.length);
     for (int i = 0; i < controllersMitOption.length; i++) {
-      print("for erreicht");
       if (controllersMitOption[i].option.toString() == "" ||
           controllersMitOption[i].option.toString() == null) {
-        print("if erreicht");
         onDelete(controllersMitOption[i]);
+      }
+    }
+  }
+
+  void checkDuplicate() {
+    for (int basis = 0; basis < controllersMitOption.length - 1; basis++) {
+      for (int vergleich = basis + 1;
+          vergleich < controllersMitOption.length;
+          vergleich++) {
+        if (controllersMitOption[basis].option.toString() ==
+            controllersMitOption[vergleich].option.toString()) {
+          onDelete((controllersMitOption[vergleich]));
+          vergleich--;
+        }
       }
     }
   }
 
   void home() {
     checkEmpty();
+    checkDuplicate();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => StartWidget()));
   }
