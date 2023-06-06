@@ -52,7 +52,14 @@ class _AboutWidgetState extends State<AboutWidget> {
     }
   }
 
-  void toLicenses() {
+  void toLicenses() async {
     //TODO Licenses Widget or link
+    const url =
+        'https://github.com/BogyMitutoyoCTL/Praktikums-App-2023-05/blob/main/LICENSE';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
