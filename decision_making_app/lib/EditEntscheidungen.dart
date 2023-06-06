@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:decision_making_app/ControllerUndOption.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
@@ -37,6 +40,8 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
 
   @override
   Widget build(BuildContext context) {
+    deleteEmtpyOption();
+    deleteDuplicateOption();
     final List<Widget> textfelder = [];
     for (ControllerUndEntscheidung controlUndEntscheidung
         in controllerUndEntscheidung) {
@@ -133,7 +138,42 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   }
 
   void bearbeiten(Entscheidung aktuelleEntscheidung) {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => EditOptionen(aktuelleEntscheidung)));
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+            builder: (context) => EditOptionen(aktuelleEntscheidung)))
+        .then(refresh);
+  }
+
+  void deleteDuplicateOption() {
+    for (int i = 0; i < controllerUndEntscheidung.length; i++) {
+      var entscheidung2 = controllerUndEntscheidung[i].entscheidung;
+      for (int basis = 0; basis < entscheidung2.optionen.length - 1; basis++) {
+        for (int vgl = basis + 1; vgl < entscheidung2.optionen.length; vgl++) {
+          if (entscheidung2.optionen[basis].toString() ==
+              entscheidung2.optionen[vgl].toString()) {
+            var temp = entscheidung2.optionen[vgl];
+            entscheidung2.optionen.remove(temp);
+            vgl--;
+          }
+        }
+      }
+    }
+  }
+
+  void deleteEmtpyOption() {
+    for (int i = 0; i < controllerUndEntscheidung.length; i++) {
+      var entscheidung2 = controllerUndEntscheidung[i].entscheidung;
+      for (int j = 0; j < entscheidung2.optionen.length; j++) {
+        if (entscheidung2.optionen[j].toString() == "") {
+          var temp = entscheidung2.optionen[j];
+          entscheidung2.optionen.remove(temp);
+          j--;
+        }
+      }
+    }
+  }
+
+  FutureOr refresh(value) {
+    setState(() {});
   }
 }
