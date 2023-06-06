@@ -21,7 +21,6 @@ void main() {
       data.optionen.add(Option("Nudeln"));
       data.optionen.add(Option("Fisch"));
       var json = jsonDecode(jsonEncode(data));
-      print(json);
       var expected = jsonDecode(r'''{
       "optionen": [{"option": "Nudeln"},{"option": "Fisch"}],
       "fragestellung": "Was essen wir heute?"
@@ -48,8 +47,6 @@ void main() {
       var b = Entscheidung("Wie halten wir uns heute fit?");
       a.optionen.add(Option("Nudeln"));
       b.optionen.add(Option("Nudeln"));
-      print(a.fragestellung);
-      print(b.fragestellung);
       expect(DeepCollectionEquality().equals(a, b), true);
     });
   });
