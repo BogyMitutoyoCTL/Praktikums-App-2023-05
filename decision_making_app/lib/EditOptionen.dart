@@ -112,8 +112,7 @@ class _EditOptionenState extends State<EditOptionen> {
 
   void checkEmpty() {
     for (int i = 0; i < controllersMitOption.length; i++) {
-      if (controllersMitOption[i].option.toString() == "" ||
-          controllersMitOption[i].option.toString() == null) {
+      if (controllersMitOption[i].option.toString() == "") {
         onDelete(controllersMitOption[i]);
       }
     }
@@ -136,7 +135,7 @@ class _EditOptionenState extends State<EditOptionen> {
   void home() {
     checkEmpty();
     checkDuplicate();
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => StartWidget()));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => StartWidget()));
   }
 }
