@@ -6,16 +6,31 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 import 'package:decision_making_app/DecisionMakingApp.dart';
+import 'package:decision_making_app/StartWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('test the ui', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const DecisionMakingApp());
 
-    //Expect that the Widget has just one edit button and no add button
-    expect(find.byIcon(Icons.edit), findsOneWidget);
+    //find shuffle_sharp icon in splash screen
+    expect(find.byIcon(Icons.shuffle_sharp), findsOneWidget);
+
+    //Timer will show up for 5 seconds...
+    await tester.pumpAndSettle(Duration(seconds: 5));
+
+    //Expect that the StartWidget has just one edit button and no add button
+    expect(find.byIcon(Icons.language), findsOneWidget);
     expect(find.byIcon(Icons.add), findsNothing);
+
+    //Click on the edit button
+    await tester.tap(find.byIcon(Icons.edit));
+    await tester.pumpAndSettle();
+
+    //Expect a home button in the EditEntscheidungen.dart Widget
+    expect(find.byIcon(Icons.home), findsOneWidget);
+
   });
 }
