@@ -21,8 +21,11 @@ class ZufallsErgebnis extends StatelessWidget {
         child: Text(frage),
       )),
       body: Center(
-        child: Text(zufallsergebnis(context),
-            style: Theme.of(context).textTheme.displayLarge),
+        child: Text(
+          zufallsergebnis(context),
+          style: Theme.of(context).textTheme.displayLarge,
+          textAlign: TextAlign.center,
+        ),
       ),
     );
   }
