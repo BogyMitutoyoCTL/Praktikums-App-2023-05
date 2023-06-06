@@ -29,8 +29,12 @@ class _SplashScreenState extends State<SplashScreen> {
     });
     timer?.cancel();
     return Scaffold(
-      body: Center(
-          child: Row(
+        body: Container(
+      width: double.infinity,
+      height: double.infinity,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(
             Icons.shuffle_sharp,
@@ -38,7 +42,7 @@ class _SplashScreenState extends State<SplashScreen> {
           ),
           Text(AppLocalizations.of(context)!.appTitel),
         ],
-      )),
-    );
+      ),
+    ));
   }
 }
