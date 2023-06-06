@@ -41,6 +41,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   @override
   Widget build(BuildContext context) {
     deleteEmtpyOption();
+    deleteDuplicateOption();
     final List<Widget> textfelder = [];
     for (ControllerUndEntscheidung controlUndEntscheidung
         in controllerUndEntscheidung) {
@@ -143,6 +144,22 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
         .then(refresh);
   }
 
+  void deleteDuplicateOption() {
+    for (int i = 0; i < controllerUndEntscheidung.length; i++) {
+      var entscheidung2 = controllerUndEntscheidung[i].entscheidung;
+      for (int basis = 0; basis < entscheidung2.optionen.length - 1; basis++) {
+        for (int vgl = basis + 1; vgl < entscheidung2.optionen.length; vgl++) {
+          if (entscheidung2.optionen[basis].toString() ==
+              entscheidung2.optionen[vgl].toString()) {
+            var temp = entscheidung2.optionen[vgl];
+            entscheidung2.optionen.remove(temp);
+            vgl--;
+          }
+        }
+      }
+    }
+  }
+
   void deleteEmtpyOption() {
     for (int i = 0; i < controllerUndEntscheidung.length; i++) {
       var entscheidung2 = controllerUndEntscheidung[i].entscheidung;
@@ -151,17 +168,10 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
           var temp = entscheidung2.optionen[j];
           entscheidung2.optionen.remove(temp);
           j--;
-
-          // deleteOption(entscheidung, option);
         }
       }
     }
   }
-
-/* void deleteOption(Entscheidung entscheidung) {
-    int index = datenbank.entscheidungen.indexOf(entscheidung);
-    datenbank.entscheidungen[index].optionen[]
-  }*/
 
   FutureOr refresh(value) {
     setState(() {});
