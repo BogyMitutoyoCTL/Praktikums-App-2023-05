@@ -9,6 +9,6 @@
   "pressToContinue": "Press to continue",
   "appTitel": "Decision Making App",
   "noOption": "No option available",
-  "oneOption": "Only one option available",
+  "oneOption": "Only one option available: ",
   "onlyEmpty": "There are no valid options available"
 }

@@ -7,23 +7,25 @@ class ZufallsErgebnis extends StatelessWidget {
   final String frage;
   final Entscheidung entscheidung;
 
-  const ZufallsErgebnis(
-    this.frage,
-    this.entscheidung, {
-    Key? key,
-  }) : super(key: key);
+  const ZufallsErgebnis(this.frage,
+      this.entscheidung, {
+        Key? key,
+      }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           title: Center(
-        child: Text(frage),
-      )),
+            child: Text(frage),
+          )),
       body: Center(
         child: Text(
           zufallsergebnis(context),
-          style: Theme.of(context).textTheme.displayLarge,
+          style: Theme
+              .of(context)
+              .textTheme
+              .displayLarge,
           textAlign: TextAlign.center,
         ),
       ),
@@ -33,6 +35,7 @@ class ZufallsErgebnis extends StatelessWidget {
   String zufallsergebnis(BuildContext context) {
     var laenge = entscheidung.optionen.length;
     String ergebnis = "";
+    int possible = 0;
     while (ergebnis == "") {
       if (laenge == 0) {
         return AppLocalizations.of(context)!.noOption;
@@ -48,7 +51,7 @@ class ZufallsErgebnis extends StatelessWidget {
 
       if (ergebnis == "") {
         int wdh = 0;
-        int possible = 0;
+
         for (int i = 0; i <= entscheidung.optionen.length - 1; i++) {
           if (entscheidung.optionen[i].toString() == "") {
             wdh++;
@@ -56,12 +59,13 @@ class ZufallsErgebnis extends StatelessWidget {
             possible++;
           }
         }
-        print("da");
         if (wdh == entscheidung.optionen.length) {
-          print("Text ausgabe");
           return AppLocalizations.of(context)!.onlyEmpty;
         }
       }
+    }
+    if (possible == 1) {
+      return AppLocalizations.of(context)!.oneOption + ergebnis;
     }
     return ergebnis;
   }
