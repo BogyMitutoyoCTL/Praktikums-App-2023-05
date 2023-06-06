@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:decision_making_app/ControllerUndOption.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
@@ -37,6 +40,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
 
   @override
   Widget build(BuildContext context) {
+    deleteEmtpyOption();
     final List<Widget> textfelder = [];
     for (ControllerUndEntscheidung controlUndEntscheidung
         in controllerUndEntscheidung) {
@@ -125,7 +129,33 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   }
 
   void bearbeiten(Entscheidung aktuelleEntscheidung) {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => EditOptionen(aktuelleEntscheidung)));
+    Navigator.of(context)
+        .push(MaterialPageRoute(
+            builder: (context) => EditOptionen(aktuelleEntscheidung)))
+        .then(refresh);
+  }
+
+  void deleteEmtpyOption() {
+    for (int i = 0; i < controllerUndEntscheidung.length; i++) {
+      var entscheidung2 = controllerUndEntscheidung[i].entscheidung;
+      for (int j = 0; j < entscheidung2.optionen.length; j++) {
+        if (entscheidung2.optionen[j].toString() == "") {
+          var temp = entscheidung2.optionen[j];
+          entscheidung2.optionen.remove(temp);
+          j--;
+
+          // deleteOption(entscheidung, option);
+        }
+      }
+    }
+  }
+
+/* void deleteOption(Entscheidung entscheidung) {
+    int index = datenbank.entscheidungen.indexOf(entscheidung);
+    datenbank.entscheidungen[index].optionen[]
+  }*/
+
+  FutureOr refresh(value) {
+    setState(() {});
   }
 }
