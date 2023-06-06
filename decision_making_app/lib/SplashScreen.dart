@@ -39,7 +39,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> wechseln() async {
     datenbank = await speichern.readData();
-    Navigator.push(
+    Navigator.pushReplacement(
       context,
       MaterialPageRoute(
         builder: (context) => StartWidget(),

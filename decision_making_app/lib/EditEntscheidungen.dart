@@ -133,8 +133,8 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   }
 
   void home() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => StartWidget()));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => StartWidget()));
   }
 
   void bearbeiten(Entscheidung aktuelleEntscheidung) {
