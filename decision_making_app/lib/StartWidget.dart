@@ -115,8 +115,7 @@ class _StartWidgetState extends State<StartWidget> {
   }
 
   Future<void> changeLanguage() async {
-    String lesen = await speichern.readData();
-    datenbank = Datenbank.fromJson(jsonDecode(lesen));
+    datenbank = await speichern.readData();
     setState(() {});
   }
 }
