@@ -1,5 +1,8 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+
+import 'Datenbank.dart';
 
 class StoreFiles {
   Future<String> get _localPath async {
@@ -14,21 +17,21 @@ class StoreFiles {
     return File('$path/DecisionMakingApp.json');
   }
 
-  Future<File> writeData(String data) async {
+  Future<File> writeData(Datenbank data) async {
     final file = await _localFile;
-
-    return file.writeAsString(data);
+    var string = jsonEncode(data.toJson());
+    return file.writeAsString(string);
   }
 
-  Future<String> readData() async {
+  Future<Datenbank> readData() async {
     try {
       final file = await _localFile;
 
       final contents = await file.readAsString();
-
-      return contents;
+      Datenbank saved = Datenbank.fromJson(jsonDecode(contents));
+      return saved;
     } catch (e) {
-      return "";
+      return Datenbank();
     }
   }
 }
