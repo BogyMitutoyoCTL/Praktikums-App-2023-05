@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:decision_making_app/Datenbank.dart';
 import 'package:decision_making_app/EditEntscheidungen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
@@ -42,6 +40,7 @@ class _StartWidgetState extends State<StartWidget> {
 
   @override
   Widget build(BuildContext context) {
+    test();
     List<Widget> mainButtons = [];
     for (int i = 0; i < datenbank.entscheidungen.length; i++) {
       var frage = datenbank.entscheidungen[i].fragestellung;
@@ -111,11 +110,30 @@ class _StartWidgetState extends State<StartWidget> {
   }
 
   FutureOr refresh(value) {
-    setState(() {});
+    setState(() {
+      test();
+    });
+  }
+
+  void test() {
+    for (int i = 0; i < datenbank.entscheidungen.length; i++) {
+      if (datenbank.entscheidungen[i].fragestellung == "") {
+        var temp = datenbank.entscheidungen[i];
+        if (temp.optionen.length == 2 &&
+            temp.optionen[0].text == "Option 1" &&
+            temp.optionen[1].text == "Option 2") {
+          datenbank.entscheidungen.remove(temp);
+        }
+      }
+    }
   }
 
   Future<void> changeLanguage() async {
     datenbank = await speichern.readData();
     setState(() {});
+  }
+
+  Future<void> save() async {
+    await speichern.writeData(datenbank);
   }
 }
