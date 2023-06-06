@@ -19,4 +19,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: release-apk
-          path: decision_making_app/android/app/build/outputs/apk/release/
+          path: decision_making_app/build/app/outputs/flutter-apk/
