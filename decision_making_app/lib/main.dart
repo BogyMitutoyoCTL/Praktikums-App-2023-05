@@ -8,7 +8,7 @@ import 'Datenbank.dart';
 
 var datenbank = Datenbank();
 
-Future<void> main() async {
+void main() {
   var kochen = datenbank.add("Was kochen wir heute?");
   kochen.add("Nudeln");
   kochen.add("Spaghetti");

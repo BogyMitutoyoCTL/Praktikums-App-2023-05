@@ -45,7 +45,6 @@ void main() {
       data.add("A");
       data.add("B");
       var json = jsonDecode(jsonEncode(data));
-      print(json);
 
       var expected = jsonDecode(r'''{
 "entscheidungen": [
