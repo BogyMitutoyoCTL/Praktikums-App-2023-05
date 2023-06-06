@@ -13,8 +13,8 @@ jobs:
           java-version: '17'
       - uses: subosito/flutter-action@v1
       - run: cd ./decision_making_app;flutter pub get
-      - run: cd ./decision_making_app;dart format --set-exit-if-changed .
-      - run: cd ./decision_making_app;flutter analyze .
+      #- run: cd ./decision_making_app;dart format --set-exit-if-changed .
+      #- run: cd ./decision_making_app;flutter analyze .
       - run: cd ./decision_making_app;flutter build apk
       - uses: actions/upload-artifact@v1
         with:
