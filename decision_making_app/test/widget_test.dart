@@ -50,7 +50,7 @@ void main() {
       await tester.tap(find.byIcon(Icons.add));
       await tester.pumpAndSettle();
 
-      // Enter 'hi' into the TextField.
+      // Enter a new question into the TextField.
       await tester.enterText(find.byType(TextField), question);
 
       await tester.tap(find.byIcon(Icons.home));
