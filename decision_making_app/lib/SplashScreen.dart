@@ -27,7 +27,6 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       );
     });
-    timer?.cancel();
     return Scaffold(
         body: Container(
       width: double.infinity,
