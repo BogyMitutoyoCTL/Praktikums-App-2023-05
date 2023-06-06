@@ -1,7 +1,6 @@
 import 'package:decision_making_app/SplashScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'StartWidget.dart';
 
 class DecisionMakingApp extends StatelessWidget {
   const DecisionMakingApp({super.key});

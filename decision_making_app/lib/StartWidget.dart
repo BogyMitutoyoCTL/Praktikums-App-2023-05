@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-import 'package:decision_making_app/Datenbank.dart';
 import 'package:decision_making_app/EditEntscheidungen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
