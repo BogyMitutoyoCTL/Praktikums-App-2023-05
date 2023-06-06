@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:decision_making_app/Datenbank.dart';
 import 'package:decision_making_app/EditEntscheidungen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
@@ -12,8 +13,7 @@ var speichern = StoreFiles();
 
 class StartWidget extends StatefulWidget {
   StartWidget({Key? key}) : super(key: key) {
-    var string = jsonEncode(datenbank);
-    speichern.writeData(string);
+
   }
 
   @override
@@ -23,8 +23,9 @@ class StartWidget extends StatefulWidget {
 class _StartWidgetState extends State<StartWidget> {
   Future<bool> _onWillPop() async {
     return (await showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
+      context: context,
+      builder: (context) =>
+          AlertDialog(
             title: Text(AppLocalizations.of(context)!.meldung),
             content: Text(AppLocalizations.of(context)!.exit),
             actions: <Widget>[
@@ -38,7 +39,7 @@ class _StartWidgetState extends State<StartWidget> {
               ),
             ],
           ),
-        )) ??
+    )) ??
         false;
   }
 
@@ -100,8 +101,8 @@ class _StartWidgetState extends State<StartWidget> {
     );
   }
 
-  void zufaelligesErgebnis(
-      List<Widget> buttons, String frage, Entscheidung optionen) {
+  void zufaelligesErgebnis(List<Widget> buttons, String frage,
+      Entscheidung optionen) {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => ZufallsErgebnis(frage, optionen)));
   }
@@ -118,6 +119,9 @@ class _StartWidgetState extends State<StartWidget> {
 
   Future<void> changeLanguage() async {
     String lesen = await speichern.readData();
-    print(lesen);
+    datenbank = Datenbank.fromJson(jsonDecode(lesen));
+    setState(() {
+
+    });
   }
 }

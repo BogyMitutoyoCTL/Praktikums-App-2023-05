@@ -122,7 +122,6 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   }
 
   void bearbeiten(Entscheidung aktuelleEntscheidung) {
-    print(aktuelleEntscheidung);
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => EditOptionen(aktuelleEntscheidung)));
   }
