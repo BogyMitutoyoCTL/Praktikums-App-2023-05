@@ -12,9 +12,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 var speichern = StoreFiles();
 
 class StartWidget extends StatefulWidget {
-  StartWidget({Key? key}) : super(key: key) {
-
-  }
+  StartWidget({Key? key}) : super(key: key) {}
 
   @override
   State<StartWidget> createState() => _StartWidgetState();
@@ -23,9 +21,8 @@ class StartWidget extends StatefulWidget {
 class _StartWidgetState extends State<StartWidget> {
   Future<bool> _onWillPop() async {
     return (await showDialog(
-      context: context,
-      builder: (context) =>
-          AlertDialog(
+          context: context,
+          builder: (context) => AlertDialog(
             title: Text(AppLocalizations.of(context)!.meldung),
             content: Text(AppLocalizations.of(context)!.exit),
             actions: <Widget>[
@@ -39,7 +36,7 @@ class _StartWidgetState extends State<StartWidget> {
               ),
             ],
           ),
-    )) ??
+        )) ??
         false;
   }
 
@@ -101,8 +98,8 @@ class _StartWidgetState extends State<StartWidget> {
     );
   }
 
-  void zufaelligesErgebnis(List<Widget> buttons, String frage,
-      Entscheidung optionen) {
+  void zufaelligesErgebnis(
+      List<Widget> buttons, String frage, Entscheidung optionen) {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => ZufallsErgebnis(frage, optionen)));
   }
@@ -120,8 +117,6 @@ class _StartWidgetState extends State<StartWidget> {
   Future<void> changeLanguage() async {
     String lesen = await speichern.readData();
     datenbank = Datenbank.fromJson(jsonDecode(lesen));
-    setState(() {
-
-    });
+    setState(() {});
   }
 }
