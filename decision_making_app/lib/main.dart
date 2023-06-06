@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:decision_making_app/DecisionMakingApp.dart';
+import 'package:decision_making_app/storeFiles.dart';
 import 'package:flutter/material.dart';
 
 import 'Datenbank.dart';
@@ -16,6 +17,7 @@ void main() {
   sport.add("Fußball");
   sport.add("Schwimmen");
 
+  print(jsonEncode(kochen));
   runApp(const DecisionMakingApp());
 
 }
