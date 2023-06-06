@@ -11,5 +11,6 @@
   "noOption": "No option available",
   "oneOption": "Only one option available: ",
   "onlyEmpty": "There are no valid options available",
-  "about": "About"
+  "about": "About",
+  "licenses": "Licenses"
 }
