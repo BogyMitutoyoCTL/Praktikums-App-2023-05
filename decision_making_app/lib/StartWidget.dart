@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:decision_making_app/Datenbank.dart';
 import 'package:decision_making_app/EditEntscheidungen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
@@ -11,10 +12,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 var speichern = StoreFiles();
 
 class StartWidget extends StatefulWidget {
-  StartWidget({Key? key}) : super(key: key) {
-    var string = jsonEncode(datenbank);
-    speichern.writeData(string);
-  }
+  StartWidget({Key? key}) : super(key: key) {}
 
   @override
   State<StartWidget> createState() => _StartWidgetState();
@@ -118,6 +116,7 @@ class _StartWidgetState extends State<StartWidget> {
 
   Future<void> changeLanguage() async {
     String lesen = await speichern.readData();
-    print(lesen);
+    datenbank = Datenbank.fromJson(jsonDecode(lesen));
+    setState(() {});
   }
 }

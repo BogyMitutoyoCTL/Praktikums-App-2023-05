@@ -19,16 +19,16 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
 
   _EditEntscheidungenState() {
     for (Entscheidung entscheidung in datenbank.entscheidungen) {
-      ControllerUndEntscheidung textontrollerUndEntscheidung =
+      ControllerUndEntscheidung textcontrollerUndEntscheidung =
           ControllerUndEntscheidung();
-      controllerUndEntscheidung.add(textontrollerUndEntscheidung);
-      textontrollerUndEntscheidung.entscheidung = entscheidung;
-      textontrollerUndEntscheidung.controller.text =
-          textontrollerUndEntscheidung.entscheidung.fragestellung;
-      textontrollerUndEntscheidung.controller.addListener(() {
+      controllerUndEntscheidung.add(textcontrollerUndEntscheidung);
+      textcontrollerUndEntscheidung.entscheidung = entscheidung;
+      textcontrollerUndEntscheidung.controller.text =
+          textcontrollerUndEntscheidung.entscheidung.fragestellung;
+      textcontrollerUndEntscheidung.controller.addListener(() {
         setState(() {
-          textontrollerUndEntscheidung.entscheidung.fragestellung =
-              textontrollerUndEntscheidung.controller.text;
+          textcontrollerUndEntscheidung.entscheidung.fragestellung =
+              textcontrollerUndEntscheidung.controller.text;
         });
       });
     }
@@ -122,7 +122,6 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   }
 
   void bearbeiten(Entscheidung aktuelleEntscheidung) {
-    print(aktuelleEntscheidung);
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => EditOptionen(aktuelleEntscheidung)));
   }
