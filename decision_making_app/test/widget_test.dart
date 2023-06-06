@@ -53,7 +53,7 @@ void main() {
       // Enter 'hi' into the TextField.
       await tester.enterText(find.byType(TextField), question);
 
-      await tester.tap(find.byIcon(Icons.add));
+      await tester.tap(find.byIcon(Icons.home));
       await tester.pumpAndSettle();
 
       // Ensure that the item is on the main screen now
