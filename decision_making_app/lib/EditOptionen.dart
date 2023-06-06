@@ -85,6 +85,7 @@ class _EditOptionenState extends State<EditOptionen> {
   }
 
   void onDelete(ControllerUndOption controllerUndOption) {
+    print("ondelete erreicht");
     var entscheidung = widget.bearbeiteteEntscheidung;
     setState(() {
       entscheidung.optionen.remove(controllerUndOption.option);
@@ -109,7 +110,32 @@ class _EditOptionenState extends State<EditOptionen> {
     });
   }
 
+  void checkEmpty() {
+    for (int i = 0; i < controllersMitOption.length; i++) {
+      if (controllersMitOption[i].option.toString() == "" ||
+          controllersMitOption[i].option.toString() == null) {
+        onDelete(controllersMitOption[i]);
+      }
+    }
+  }
+
+  void checkDuplicate() {
+    for (int basis = 0; basis < controllersMitOption.length - 1; basis++) {
+      for (int vergleich = basis + 1;
+          vergleich < controllersMitOption.length;
+          vergleich++) {
+        if (controllersMitOption[basis].option.toString() ==
+            controllersMitOption[vergleich].option.toString()) {
+          onDelete((controllersMitOption[vergleich]));
+          vergleich--;
+        }
+      }
+    }
+  }
+
   void home() {
+    checkEmpty();
+    checkDuplicate();
     Navigator.of(context)
         .push(MaterialPageRoute(builder: (context) => StartWidget()));
   }

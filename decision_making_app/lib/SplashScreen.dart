@@ -1,8 +1,5 @@
 import 'dart:async';
-import 'package:decision_making_app/EditEntscheidungen.dart';
-import 'package:decision_making_app/Entscheidung.dart';
 import 'package:decision_making_app/StartWidget.dart';
-import 'package:decision_making_app/ZufallsErgebnis.dart';
 import 'package:decision_making_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -19,13 +16,8 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    timer = Timer(Duration(seconds: 3), () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => StartWidget(),
-        ),
-      );
+    timer = Timer(Duration(seconds: 3), () async {
+      await wechseln();
     });
     return Scaffold(
         body: Container(
@@ -43,5 +35,15 @@ class _SplashScreenState extends State<SplashScreen> {
         ],
       ),
     ));
+  }
+
+  Future<void> wechseln() async {
+    datenbank = await speichern.readData();
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => StartWidget(),
+      ),
+    );
   }
 }
