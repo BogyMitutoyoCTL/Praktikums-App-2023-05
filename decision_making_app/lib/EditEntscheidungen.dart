@@ -5,6 +5,7 @@ import 'package:decision_making_app/StartWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:decision_making_app/ControllerUndEntscheidung.dart';
 
+import 'Option.dart';
 import 'main.dart';
 
 class EditEntscheidungen extends StatefulWidget {
@@ -105,6 +106,8 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
           ControllerUndEntscheidung();
       controllerUndEntscheidung.add(controlUndEntscheidung);
       controlUndEntscheidung.entscheidung = neueEntscheidung;
+      controlUndEntscheidung.entscheidung.optionen.add(Option("Option 1"));
+      controlUndEntscheidung.entscheidung.optionen.add(Option("Option 2"));
       controlUndEntscheidung.controller.text =
           controlUndEntscheidung.entscheidung.fragestellung;
       controlUndEntscheidung.controller.addListener(() {
