@@ -7,6 +7,7 @@ import 'package:decision_making_app/storeFiles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:decision_making_app/AboutWidget.dart';
 
 var speichern = StoreFiles();
 
@@ -20,9 +21,8 @@ class StartWidget extends StatefulWidget {
 class _StartWidgetState extends State<StartWidget> {
   Future<bool> _onWillPop() async {
     return (await showDialog(
-      context: context,
-      builder: (context) =>
-          AlertDialog(
+          context: context,
+          builder: (context) => AlertDialog(
             title: Text(AppLocalizations.of(context)!.meldung),
             content: Text(AppLocalizations.of(context)!.exit),
             actions: <Widget>[
@@ -36,7 +36,7 @@ class _StartWidgetState extends State<StartWidget> {
               ),
             ],
           ),
-    )) ??
+        )) ??
         false;
   }
 
@@ -101,8 +101,8 @@ class _StartWidgetState extends State<StartWidget> {
     );
   }
 
-  void zufaelligesErgebnis(List<Widget> buttons, String frage,
-      Entscheidung optionen) {
+  void zufaelligesErgebnis(
+      List<Widget> buttons, String frage, Entscheidung optionen) {
     Navigator.of(context).push(MaterialPageRoute(
         builder: (context) => ZufallsErgebnis(frage, optionen)));
   }
@@ -114,8 +114,8 @@ class _StartWidgetState extends State<StartWidget> {
   }
 
   void toAbout() {
-    Navigator.of(context).push(
-        MaterialPageRoute(builder: (context) => AboutDialog()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => AboutWidget()));
   }
 
   FutureOr refresh(value) {
@@ -145,6 +145,4 @@ class _StartWidgetState extends State<StartWidget> {
   Future<void> save() async {
     await speichern.writeData(datenbank);
   }
-
-
 }
