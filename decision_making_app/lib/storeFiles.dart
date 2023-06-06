@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
-class storeFiles {
+class StoreFiles {
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
 
@@ -10,6 +10,7 @@ class storeFiles {
 
   Future<File> get _localFile async {
     final path = await _localPath;
+    print(path);
     return File('$path/DecisionMakingApp.json');
   }
 

@@ -1,13 +1,14 @@
 import 'dart:convert';
 
 import 'package:decision_making_app/DecisionMakingApp.dart';
+import 'package:decision_making_app/storeFiles.dart';
 import 'package:flutter/material.dart';
 
 import 'Datenbank.dart';
 
 var datenbank = Datenbank();
 
-void main() {
+Future<void> main() async {
   var kochen = datenbank.add("Was kochen wir heute?");
   kochen.add("Nudeln");
   kochen.add("Spaghetti");
@@ -17,5 +18,5 @@ void main() {
   sport.add("Schwimmen");
 
   print(jsonEncode(kochen));
-  // runApp(const DecisionMakingApp());
+  runApp(const DecisionMakingApp());
 }
