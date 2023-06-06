@@ -32,17 +32,37 @@ class ZufallsErgebnis extends StatelessWidget {
 
   String zufallsergebnis(BuildContext context) {
     var laenge = entscheidung.optionen.length;
-    if (laenge == 0) {
-      return AppLocalizations.of(context)!.noOption;
+    String ergebnis = "";
+    while (ergebnis == "") {
+      if (laenge == 0) {
+        return AppLocalizations.of(context)!.noOption;
+      }
+      if (laenge == 1) {
+        String ausgabe = AppLocalizations.of(context)!.oneOption +
+            entscheidung.optionen[0].toString();
+        return ausgabe;
+      }
+      Random random = Random();
+      int randomNumber = random.nextInt(laenge); //from 0 to laenge-1
+      ergebnis = entscheidung.optionen[randomNumber].toString();
+
+      if (ergebnis == "") {
+        int wdh = 0;
+        int possible = 0;
+        for (int i = 0; i <= entscheidung.optionen.length - 1; i++) {
+          if (entscheidung.optionen[i].toString() == "") {
+            wdh++;
+          } else {
+            possible++;
+          }
+        }
+        print("da");
+        if (wdh == entscheidung.optionen.length) {
+          print("Text ausgabe");
+          return AppLocalizations.of(context)!.onlyEmpty;
+        }
+      }
     }
-    if (laenge == 1) {
-      String ausgabe = AppLocalizations.of(context)!.oneOption +
-          entscheidung.optionen[0].toString();
-      return ausgabe;
-    }
-    Random random = Random();
-    int randomNumber = random.nextInt(laenge); //from 0 to laenge-1
-    String ergebnis = entscheidung.optionen[randomNumber].toString();
     return ergebnis;
   }
 }
