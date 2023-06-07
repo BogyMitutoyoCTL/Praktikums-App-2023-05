@@ -97,11 +97,13 @@ class _StartWidgetState extends State<StartWidget> {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             FloatingActionButton(
+                heroTag: null,
                 onPressed: getFromCloud,
                 backgroundColor: Colors.white,
                 child: const Icon(Icons.cloud_download_outlined)),
             SizedBox(height: 20),
             FloatingActionButton(
+              heroTag: null,
               onPressed: saveToCloud,
               backgroundColor: Colors.white,
               child: const Icon(Icons.cloud_upload_outlined),
