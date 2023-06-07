@@ -5,8 +5,7 @@ import 'package:decision_making_app/Datenbank.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  group('Datenbank', ()
-  {
+  group('Datenbank', () {
     test('4 elements added...', () {
       final data = Datenbank();
       data.add("Wer macht heute den Abwasch?");
@@ -39,7 +38,6 @@ void main() {
       expect(expected == actual, false);
     });
 
-
     test('encode_json', () {
       final data = Datenbank();
       data.add("A");
@@ -59,7 +57,6 @@ void main() {
 ]}''');
       expect(DeepCollectionEquality.unordered().equals(json, expected), true);
     });
-
 
     test('decode_json', () {
       final expected = Datenbank();
