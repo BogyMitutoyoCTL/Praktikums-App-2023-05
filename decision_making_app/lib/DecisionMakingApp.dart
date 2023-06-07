@@ -34,11 +34,8 @@ class _DecisionMakingAppState extends State<DecisionMakingApp>
     if (state == AppLifecycleState.inactive) {
       // The app is deactivated and will probably be paused next
       // Let's store the data before it's too late.
-      print("New lifecycle state: ${state.name}. Saving the database.");
       writingDatabase = StoreFiles().writeData(datenbank);
     } else if (state == AppLifecycleState.resumed) {
-      print(
-          "New lifecycle state: ${state.name}. Make sure that we have saved.");
       await ensureIsSaved();
     } else {
       print("New lifecycle state: ${state.name}.");

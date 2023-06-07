@@ -85,7 +85,6 @@ class _EditOptionenState extends State<EditOptionen> {
   }
 
   void onDelete(ControllerUndOption controllerUndOption) {
-    print("ondelete erreicht");
     var entscheidung = widget.bearbeiteteEntscheidung;
     setState(() {
       entscheidung.optionen.remove(controllerUndOption.option);
@@ -96,18 +95,24 @@ class _EditOptionenState extends State<EditOptionen> {
   }
 
   void plus() {
-    var option = widget.bearbeiteteEntscheidung.add("");
-    setState(() {
-      ControllerUndOption controlUndOption = ControllerUndOption();
-      controllersMitOption.add(controlUndOption);
-      controlUndOption.option = option;
-      controlUndOption.controller.text = option.text;
-      controlUndOption.controller.addListener(() {
-        setState(() {
-          option.text = controlUndOption.controller.text;
+    bool allow = true;
+    for (int i = 0; i < controllersMitOption.length; i++) {
+      if (controllersMitOption[i].option.text.isEmpty) allow = false;
+    }
+    if (allow == true) {
+      var option = widget.bearbeiteteEntscheidung.add("");
+      setState(() {
+        ControllerUndOption controlUndOption = ControllerUndOption();
+        controllersMitOption.add(controlUndOption);
+        controlUndOption.option = option;
+        controlUndOption.controller.text = option.text;
+        controlUndOption.controller.addListener(() {
+          setState(() {
+            option.text = controlUndOption.controller.text;
+          });
         });
       });
-    });
+    }
   }
 
   void home() {
