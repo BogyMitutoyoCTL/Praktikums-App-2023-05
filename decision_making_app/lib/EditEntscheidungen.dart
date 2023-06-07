@@ -23,19 +23,16 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   _EditEntscheidungenState() {
     if (datenbank.entscheidungen.isEmpty) datenbank.add("");
     for (Entscheidung entscheidung in datenbank.entscheidungen) {
-      ControllerUndEntscheidung textcontrollerUndEntscheidung =
-          ControllerUndEntscheidung();
+      ControllerUndEntscheidung textcontrollerUndEntscheidung = ControllerUndEntscheidung();
       controllerUndEntscheidung.add(textcontrollerUndEntscheidung);
       textcontrollerUndEntscheidung.entscheidung = entscheidung;
       if (entscheidung.fragestellung == "") {
         textcontrollerUndEntscheidung.focusNode.requestFocus();
       }
-      textcontrollerUndEntscheidung.controller.text =
-          textcontrollerUndEntscheidung.entscheidung.fragestellung;
+      textcontrollerUndEntscheidung.controller.text = textcontrollerUndEntscheidung.entscheidung.fragestellung;
       textcontrollerUndEntscheidung.controller.addListener(() {
         setState(() {
-          textcontrollerUndEntscheidung.entscheidung.fragestellung =
-              textcontrollerUndEntscheidung.controller.text;
+          textcontrollerUndEntscheidung.entscheidung.fragestellung = textcontrollerUndEntscheidung.controller.text;
         });
       });
     }
@@ -43,11 +40,8 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
 
   @override
   Widget build(BuildContext context) {
-    datenbank.deleteEmptyOptions();
-    datenbank.deleteDuplicateOptions();
     final List<Widget> textfelder = [];
-    for (ControllerUndEntscheidung controlUndEntscheidung
-        in controllerUndEntscheidung) {
+    for (ControllerUndEntscheidung controlUndEntscheidung in controllerUndEntscheidung) {
       var loeschen = () => onDelete(controlUndEntscheidung);
       textfelder.add(Row(
         children: [
@@ -76,9 +70,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
       appBar: AppBar(
           title: Row(
         children: [
-          Expanded(
-              child:
-                  Center(child: Text(AppLocalizations.of(context)!.decisions))),
+          Expanded(child: Center(child: Text(AppLocalizations.of(context)!.decisions))),
           IconButton(onPressed: home, icon: Icon(Icons.home)),
         ],
       )),
@@ -118,17 +110,14 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     if (allow == true) {
       var neueEntscheidung = datenbank.add("");
       setState(() {
-        ControllerUndEntscheidung controlUndEntscheidung =
-            ControllerUndEntscheidung();
+        ControllerUndEntscheidung controlUndEntscheidung = ControllerUndEntscheidung();
         controllerUndEntscheidung.add(controlUndEntscheidung);
         controlUndEntscheidung.focusNode.requestFocus();
         controlUndEntscheidung.entscheidung = neueEntscheidung;
-        controlUndEntscheidung.controller.text =
-            controlUndEntscheidung.entscheidung.fragestellung;
+        controlUndEntscheidung.controller.text = controlUndEntscheidung.entscheidung.fragestellung;
         controlUndEntscheidung.controller.addListener(() {
           setState(() {
-            controlUndEntscheidung.entscheidung.fragestellung =
-                controlUndEntscheidung.controller.text;
+            controlUndEntscheidung.entscheidung.fragestellung = controlUndEntscheidung.controller.text;
           });
         });
       });
@@ -136,21 +125,18 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   }
 
   void home() {
-    datenbank.deleteEmptyOptions();
-    datenbank.deleteDuplicateOptions();
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => StartWidget()));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => StartWidget())).then(refresh);
   }
 
   void bearbeiten(Entscheidung aktuelleEntscheidung) {
     datenbank.addEmptyOptions(aktuelleEntscheidung);
-    Navigator.of(context)
-        .push(MaterialPageRoute(
-            builder: (context) => EditOptionen(aktuelleEntscheidung)))
-        .then(refresh);
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => EditOptionen(aktuelleEntscheidung))).then(refresh);
   }
 
   FutureOr refresh(value) {
-    setState(() {});
+    setState(() {
+      datenbank.deleteEmptyOptions();
+      datenbank.deleteDuplicateOptions();
+    });
   }
 }

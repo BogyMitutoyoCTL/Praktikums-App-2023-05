@@ -52,8 +52,7 @@ class _StartWidgetState extends State<StartWidget> {
             color: Colors.white,
             child: MaterialButton(
               onPressed: () {
-                zufaelligesErgebnis(
-                    mainButtons, frage, datenbank.entscheidungen[i]);
+                zufaelligesErgebnis(mainButtons, frage, datenbank.entscheidungen[i]);
               },
               textColor: Colors.black,
               child: Text(frage),
@@ -73,11 +72,8 @@ class _StartWidgetState extends State<StartWidget> {
               padding: const EdgeInsets.all(15.0),
               child: Row(
                 children: [
-                  IconButton(
-                      onPressed: toAbout, icon: Icon(Icons.question_mark)),
-                  Expanded(
-                      child: Center(
-                          child: Text(AppLocalizations.of(context)!.mainPage))),
+                  IconButton(onPressed: toAbout, icon: Icon(Icons.question_mark)),
+                  Expanded(child: Center(child: Text(AppLocalizations.of(context)!.mainPage))),
                   IconButton(onPressed: bearbeiten, icon: Icon(Icons.edit)),
                 ],
               ),
@@ -100,25 +96,22 @@ class _StartWidgetState extends State<StartWidget> {
     );
   }
 
-  void zufaelligesErgebnis(
-      List<Widget> buttons, String frage, Entscheidung optionen) {
-    Navigator.of(context).push(MaterialPageRoute(
-        builder: (context) => ZufallsErgebnis(frage, optionen)));
+  void zufaelligesErgebnis(List<Widget> buttons, String frage, Entscheidung optionen) {
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => ZufallsErgebnis(frage, optionen))).then(refresh);
   }
 
   void bearbeiten() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => EditEntscheidungen()))
-        .then(refresh);
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => EditEntscheidungen())).then(refresh);
   }
 
   void toAbout() {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => AboutWidget()));
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => AboutWidget())).then(refresh);
   }
 
   FutureOr refresh(value) {
     setState(() {
+      datenbank.deleteDuplicateOptions();
+      datenbank.deleteEmptyOptions();
       test();
     });
   }
