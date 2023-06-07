@@ -25,7 +25,7 @@ class Datenbank {
     for (int i = 0; i < entscheidungen.length; i++) {
       var entscheidung2 = entscheidungen[i];
       for (int j = 0; j < entscheidung2.optionen.length; j++) {
-        if (entscheidung2.optionen[j].toString() == "") {
+        if (entscheidung2.optionen[j].text == "") {
           var temp = entscheidung2.optionen[j];
           entscheidung2.optionen.remove(temp);
           j--;
