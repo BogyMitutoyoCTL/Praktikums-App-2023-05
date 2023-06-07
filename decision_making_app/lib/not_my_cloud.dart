@@ -1,4 +1,5 @@
 import "dart:async";
+import "dart:convert";
 import 'app_secrets.dart';
 /*
       Content of the app_secrets.dart should look like:
@@ -8,19 +9,16 @@ import 'app_secrets.dart';
 import "package:pocketbase/pocketbase.dart";
 
 class NotMyCloud {
-  bool user_is_vaild = false;
+  bool user_is_valid = false;
   String user_token = "";
-  String fetched_data = "";
   dynamic user_model_id = 0;
-  Future<void> get_some_cloud_data() async {
+  Future<List<RecordModel>> get_some_cloud_data() async {
     final pb = PocketBase("https://pocketbase.not-my.cloud");
 
-    final authData = await pb
-        .collection('users')
-        .authWithPassword(test_user, test_user_pass);
+    final authData = await pb.collection('users').authWithPassword(test_user, test_user_pass);
 
     // after the above you can also access the auth data from the authStore
-    user_is_vaild = pb.authStore.isValid;
+    user_is_valid = pb.authStore.isValid;
     user_token = pb.authStore.token;
     user_model_id = pb.authStore.model.id;
 
@@ -28,8 +26,8 @@ class NotMyCloud {
           expand: 'optionen',
         );
 
-    fetched_data = records.toString();
     // "logout" the last authenticated model
     pb.authStore.clear();
+    return records;
   }
 }
