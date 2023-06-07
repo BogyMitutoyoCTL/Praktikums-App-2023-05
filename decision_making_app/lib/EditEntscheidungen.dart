@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:decision_making_app/Datenbank.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
@@ -24,7 +23,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   _EditEntscheidungenState() {
     for (Entscheidung entscheidung in datenbank.entscheidungen) {
       ControllerUndEntscheidung textcontrollerUndEntscheidung =
-      ControllerUndEntscheidung();
+          ControllerUndEntscheidung();
       controllerUndEntscheidung.add(textcontrollerUndEntscheidung);
       textcontrollerUndEntscheidung.entscheidung = entscheidung;
       textcontrollerUndEntscheidung.controller.text =
@@ -44,17 +43,15 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     datenbank.deleteDuplicateOptions();
     final List<Widget> textfelder = [];
     for (ControllerUndEntscheidung controlUndEntscheidung
-    in controllerUndEntscheidung) {
+        in controllerUndEntscheidung) {
       var loeschen = () => onDelete(controlUndEntscheidung);
       textfelder.add(Row(
         children: [
           Expanded(
             child: TextField(
+              focusNode: controlUndEntscheidung.focusNode,
               controller: controlUndEntscheidung.controller,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .displaySmall,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
           ),
           Row(
@@ -74,13 +71,13 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     return Scaffold(
       appBar: AppBar(
           title: Row(
-            children: [
-              Expanded(
-                  child:
+        children: [
+          Expanded(
+              child:
                   Center(child: Text(AppLocalizations.of(context)!.decisions))),
-              IconButton(onPressed: home, icon: Icon(Icons.home)),
-            ],
-          )),
+          IconButton(onPressed: home, icon: Icon(Icons.home)),
+        ],
+      )),
       body: Center(
           child: Padding(
               padding: EdgeInsets.all(15),
@@ -118,8 +115,9 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
       var neueEntscheidung = datenbank.add("");
       setState(() {
         ControllerUndEntscheidung controlUndEntscheidung =
-        ControllerUndEntscheidung();
+            ControllerUndEntscheidung();
         controllerUndEntscheidung.add(controlUndEntscheidung);
+        controlUndEntscheidung.focusNode.requestFocus();
         controlUndEntscheidung.entscheidung = neueEntscheidung;
         controlUndEntscheidung.entscheidung.optionen.add(Option("Option 1"));
         controlUndEntscheidung.entscheidung.optionen.add(Option("Option 2"));
@@ -143,10 +141,9 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   void bearbeiten(Entscheidung aktuelleEntscheidung) {
     Navigator.of(context)
         .push(MaterialPageRoute(
-        builder: (context) => EditOptionen(aktuelleEntscheidung)))
+            builder: (context) => EditOptionen(aktuelleEntscheidung)))
         .then(refresh);
   }
-
 
   FutureOr refresh(value) {
     setState(() {});

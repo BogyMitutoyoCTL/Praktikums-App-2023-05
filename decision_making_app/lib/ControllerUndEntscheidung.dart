@@ -4,4 +4,5 @@ import 'package:flutter/cupertino.dart';
 class ControllerUndEntscheidung {
   late Entscheidung entscheidung;
   TextEditingController controller = TextEditingController();
+  FocusNode focusNode = FocusNode();
 }
