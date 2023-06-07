@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 class Datenbank {
   List<Entscheidung> entscheidungen = [];
 
-  Datenbank() {}
+  Datenbank();
 
   Datenbank.fromJson(Map<String, dynamic> json) : entscheidungen = [] {
     entscheidungen = List<Entscheidung>.from(

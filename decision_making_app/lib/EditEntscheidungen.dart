@@ -21,11 +21,15 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   final List<ControllerUndEntscheidung> controllerUndEntscheidung = [];
 
   _EditEntscheidungenState() {
+    if (datenbank.entscheidungen.isEmpty) datenbank.add("");
     for (Entscheidung entscheidung in datenbank.entscheidungen) {
       ControllerUndEntscheidung textcontrollerUndEntscheidung =
           ControllerUndEntscheidung();
       controllerUndEntscheidung.add(textcontrollerUndEntscheidung);
       textcontrollerUndEntscheidung.entscheidung = entscheidung;
+      if (entscheidung.fragestellung == "") {
+        textcontrollerUndEntscheidung.focusNode.requestFocus();
+      }
       textcontrollerUndEntscheidung.controller.text =
           textcontrollerUndEntscheidung.entscheidung.fragestellung;
       textcontrollerUndEntscheidung.controller.addListener(() {
