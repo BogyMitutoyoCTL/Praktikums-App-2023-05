@@ -29,10 +29,12 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
       if (entscheidung.fragestellung == "") {
         textcontrollerUndEntscheidung.focusNode.requestFocus();
       }
-      textcontrollerUndEntscheidung.controller.text = textcontrollerUndEntscheidung.entscheidung.fragestellung;
+      textcontrollerUndEntscheidung.controller.text =
+          textcontrollerUndEntscheidung.entscheidung.fragestellung;
       textcontrollerUndEntscheidung.controller.addListener(() {
         setState(() {
-          textcontrollerUndEntscheidung.entscheidung.fragestellung = textcontrollerUndEntscheidung.controller.text;
+          textcontrollerUndEntscheidung.entscheidung.fragestellung =
+              textcontrollerUndEntscheidung.controller.text;
         });
       });
     }
@@ -49,7 +51,10 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
             child: TextField(
               focusNode: controlUndEntscheidung.focusNode,
               controller: controlUndEntscheidung.controller,
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .displaySmall,
             ),
           ),
           Row(
@@ -69,11 +74,12 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     return Scaffold(
       appBar: AppBar(
           title: Row(
-        children: [
-          Expanded(child: Center(child: Text(AppLocalizations.of(context)!.decisions))),
-          IconButton(onPressed: home, icon: Icon(Icons.home)),
-        ],
-      )),
+            children: [
+              Expanded(child: Center(
+                  child: Text(AppLocalizations.of(context)!.decisions))),
+              IconButton(onPressed: home, icon: Icon(Icons.home)),
+            ],
+          )),
       body: Center(
           child: Padding(
               padding: EdgeInsets.all(15),
@@ -90,6 +96,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
       ),
     );
   }
+
 
   void onDelete(ControllerUndEntscheidung controlUndEntscheidung) {
     setState(() {
@@ -114,10 +121,12 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
         controllerUndEntscheidung.add(controlUndEntscheidung);
         controlUndEntscheidung.focusNode.requestFocus();
         controlUndEntscheidung.entscheidung = neueEntscheidung;
-        controlUndEntscheidung.controller.text = controlUndEntscheidung.entscheidung.fragestellung;
+        controlUndEntscheidung.controller.text =
+            controlUndEntscheidung.entscheidung.fragestellung;
         controlUndEntscheidung.controller.addListener(() {
           setState(() {
-            controlUndEntscheidung.entscheidung.fragestellung = controlUndEntscheidung.controller.text;
+            controlUndEntscheidung.entscheidung.fragestellung =
+                controlUndEntscheidung.controller.text;
           });
         });
       });
@@ -125,12 +134,15 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   }
 
   void home() {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => StartWidget())).then(refresh);
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => StartWidget())).then(refresh);
   }
 
   void bearbeiten(Entscheidung aktuelleEntscheidung) {
     datenbank.addEmptyOptions(aktuelleEntscheidung);
-    Navigator.of(context).push(MaterialPageRoute(builder: (context) => EditOptionen(aktuelleEntscheidung))).then(refresh);
+    Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => EditOptionen(aktuelleEntscheidung))).then(
+        refresh);
   }
 
   FutureOr refresh(value) {
