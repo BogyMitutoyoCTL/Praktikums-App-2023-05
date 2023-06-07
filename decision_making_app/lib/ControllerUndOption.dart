@@ -4,8 +4,4 @@ import 'package:flutter/cupertino.dart';
 class ControllerUndOption {
   late Option option;
   TextEditingController controller = TextEditingController();
-
-  String optionInhalt() {
-    return option.toString();
-  }
 }
