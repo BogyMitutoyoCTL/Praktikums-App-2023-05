@@ -229,3 +229,4 @@ fabric.properties
 # End of https://www.toptal.com/developers/gitignore/api/androidstudio,dart,flutter
 **/generated_plugin*
 **/GeneratedPluginRegistrant.swift
+decision_making_app/lib/app_secrets.dart
