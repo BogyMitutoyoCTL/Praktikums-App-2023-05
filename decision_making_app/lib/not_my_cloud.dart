@@ -31,14 +31,23 @@ class NotMyCloud {
     return records;
   }
 
-  Future<String> create_option(String option) async
-  {
+  Future<String> create_option(String option) async {
     final pb = PocketBase('https://pocketbase.not-my.cloud');
     final authData = await pb.collection('users').authWithPassword(test_user, test_user_pass);
 
-    final body = <String, dynamic>{ "option": option};
+    final body = <String, dynamic>{"option": option};
 
     final record = await pb.collection('optionen').create(body: body);
+    pb.authStore.clear();
+    return record.id;
+  }
+
+  Future<String> create_entscheidung(String fragestellung, List<String> optionIDs) async {
+    final pb = PocketBase('https://pocketbase.not-my.cloud');
+    final authData = await pb.collection('users').authWithPassword(test_user, test_user_pass);
+    final body = <String, dynamic>{"fragestellung": fragestellung, "optionen": optionIDs};
+    final record = await pb.collection('entscheidungen').create(body: body);
+    pb.authStore.clear();
     return record.id;
   }
 }
