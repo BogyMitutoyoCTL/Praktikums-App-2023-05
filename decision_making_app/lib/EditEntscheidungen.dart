@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:decision_making_app/ControllerUndOption.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/Entscheidung.dart';

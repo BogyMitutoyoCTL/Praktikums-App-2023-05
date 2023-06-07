@@ -1,9 +1,3 @@
-import 'dart:async';
-import 'package:decision_making_app/EditEntscheidungen.dart';
-import 'package:decision_making_app/Entscheidung.dart';
-import 'package:decision_making_app/ZufallsErgebnis.dart';
-import 'package:decision_making_app/main.dart';
-import 'package:decision_making_app/storeFiles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
