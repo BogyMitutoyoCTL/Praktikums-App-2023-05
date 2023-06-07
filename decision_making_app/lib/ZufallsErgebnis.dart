@@ -3,7 +3,7 @@ import 'package:decision_making_app/Entscheidung.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class ZufallsErgebnis extends StatelessWidget {
+class ZufallsErgebnis extends StatefulWidget {
   final String frage;
   final Entscheidung entscheidung;
 
@@ -14,11 +14,21 @@ class ZufallsErgebnis extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<ZufallsErgebnis> createState() => _ZufallsErgebnisState();
+}
+
+class _ZufallsErgebnisState extends State<ZufallsErgebnis> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           title: Center(
-        child: Text(frage),
+        child: Row(
+          children: [
+            Text(widget.frage),
+            IconButton(onPressed: reroll, icon: Icon(Icons.repeat))
+          ],
+        ),
       )),
       body: Center(
         child: Text(
@@ -31,7 +41,7 @@ class ZufallsErgebnis extends StatelessWidget {
   }
 
   String zufallsergebnis(BuildContext context) {
-    var laenge = entscheidung.optionen.length;
+    var laenge = widget.entscheidung.optionen.length;
     String ergebnis = "";
     int possible = 0;
     while (ergebnis == "") {
@@ -40,24 +50,24 @@ class ZufallsErgebnis extends StatelessWidget {
       }
       if (laenge == 1) {
         String ausgabe = AppLocalizations.of(context)!.oneOption +
-            entscheidung.optionen[0].toString();
+            widget.entscheidung.optionen[0].toString();
         return ausgabe;
       }
       Random random = Random();
       int randomNumber = random.nextInt(laenge); //from 0 to laenge-1
-      ergebnis = entscheidung.optionen[randomNumber].toString();
+      ergebnis = widget.entscheidung.optionen[randomNumber].toString();
 
       if (ergebnis == "") {
         int wdh = 0;
 
-        for (int i = 0; i <= entscheidung.optionen.length - 1; i++) {
-          if (entscheidung.optionen[i].toString() == "") {
+        for (int i = 0; i <= widget.entscheidung.optionen.length - 1; i++) {
+          if (widget.entscheidung.optionen[i].toString() == "") {
             wdh++;
           } else {
             possible++;
           }
         }
-        if (wdh == entscheidung.optionen.length) {
+        if (wdh == widget.entscheidung.optionen.length) {
           return AppLocalizations.of(context)!.onlyEmpty;
         }
       }
@@ -66,5 +76,9 @@ class ZufallsErgebnis extends StatelessWidget {
       return AppLocalizations.of(context)!.oneOption + ergebnis;
     }
     return ergebnis;
+  }
+
+  void reroll() {
+    setState(() {});
   }
 }
