@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:decision_making_app/Datenbank.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
@@ -39,7 +40,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
 
   @override
   Widget build(BuildContext context) {
-    deleteEmtpyOption();
+    datenbank.deleteEmptyOptions();
     deleteDuplicateOption();
     final List<Widget> textfelder = [];
     for (ControllerUndEntscheidung controlUndEntscheidung
@@ -154,19 +155,6 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
             entscheidung2.optionen.remove(temp);
             vgl--;
           }
-        }
-      }
-    }
-  }
-
-  void deleteEmtpyOption() {
-    for (int i = 0; i < controllerUndEntscheidung.length; i++) {
-      var entscheidung2 = controllerUndEntscheidung[i].entscheidung;
-      for (int j = 0; j < entscheidung2.optionen.length; j++) {
-        if (entscheidung2.optionen[j].toString() == "") {
-          var temp = entscheidung2.optionen[j];
-          entscheidung2.optionen.remove(temp);
-          j--;
         }
       }
     }
