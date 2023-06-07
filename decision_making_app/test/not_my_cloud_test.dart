@@ -23,5 +23,14 @@ void main() {
         }
       }
     }, tags: 'database');
+
+    test('create option', () async {
+      final opt = NotMyCloud();
+      var data = await opt.create_option("Wasser");
+      print(data);
+      expect(data.isNotEmpty, true);
+    }, tags: 'database');
   });
 }
+
+

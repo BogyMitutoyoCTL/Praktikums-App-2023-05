@@ -30,4 +30,15 @@ class NotMyCloud {
     pb.authStore.clear();
     return records;
   }
+
+  Future<String> create_option(String option) async
+  {
+    final pb = PocketBase('https://pocketbase.not-my.cloud');
+    final authData = await pb.collection('users').authWithPassword(test_user, test_user_pass);
+
+    final body = <String, dynamic>{ "option": option};
+
+    final record = await pb.collection('optionen').create(body: body);
+    return record.id;
+  }
 }
