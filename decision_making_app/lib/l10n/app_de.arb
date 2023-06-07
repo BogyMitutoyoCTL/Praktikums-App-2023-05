@@ -12,5 +12,6 @@
   "oneOption": "Nur eine Option verfügbar: ",
   "onlyEmpty": "Es sind keine gültigen Optionen verfügbar",
   "about": "Über",
-  "licenses": "Lizenzen"
+  "licenses": "Lizenzen",
+  "reroll": "Nochmal"
 }

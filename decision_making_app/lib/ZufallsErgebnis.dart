@@ -23,18 +23,30 @@ class _ZufallsErgebnisState extends State<ZufallsErgebnis> {
     return Scaffold(
       appBar: AppBar(
           title: Center(
-        child: Row(
-          children: [
-            Text(widget.frage),
-            IconButton(onPressed: reroll, icon: Icon(Icons.repeat))
-          ],
+        child: Text(
+          widget.frage,
+          style: Theme.of(context).textTheme.displayMedium,
         ),
       )),
-      body: Center(
-        child: Text(
-          zufallsergebnis(context),
-          style: Theme.of(context).textTheme.displayLarge,
-          textAlign: TextAlign.center,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(
+              zufallsergebnis(context),
+              style: Theme.of(context).textTheme.displayLarge,
+              textAlign: TextAlign.center,
+            ),
+            ElevatedButton(
+                onPressed: reroll,
+                child: Text(
+                  AppLocalizations.of(context)!.reroll,
+                  style: Theme.of(context).textTheme.displayMedium,
+                ))
+          ],
         ),
       ),
     );
