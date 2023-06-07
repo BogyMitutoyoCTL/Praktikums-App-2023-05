@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:decision_making_app/Datenbank.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
@@ -50,6 +49,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
         children: [
           Expanded(
             child: TextField(
+              focusNode: controlUndEntscheidung.focusNode,
               controller: controlUndEntscheidung.controller,
               style: Theme.of(context).textTheme.displaySmall,
             ),
@@ -117,6 +117,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
         ControllerUndEntscheidung controlUndEntscheidung =
             ControllerUndEntscheidung();
         controllerUndEntscheidung.add(controlUndEntscheidung);
+        controlUndEntscheidung.focusNode.requestFocus();
         controlUndEntscheidung.entscheidung = neueEntscheidung;
         controlUndEntscheidung.entscheidung.optionen.add(Option(""));
         controlUndEntscheidung.entscheidung.optionen.add(Option(""));

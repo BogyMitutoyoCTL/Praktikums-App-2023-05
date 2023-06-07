@@ -34,6 +34,7 @@ class _EditOptionenState extends State<EditOptionen> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
     final List<Widget> textfelder = [];
@@ -42,8 +43,12 @@ class _EditOptionenState extends State<EditOptionen> {
         children: [
           Expanded(
             child: TextField(
+              focusNode: controllerMitOption.focusNode,
               controller: controllerMitOption.controller,
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .displaySmall,
             ),
           ),
           IconButton(
@@ -104,6 +109,7 @@ class _EditOptionenState extends State<EditOptionen> {
       setState(() {
         ControllerUndOption controlUndOption = ControllerUndOption();
         controllersMitOption.add(controlUndOption);
+        controlUndOption.focusNode.requestFocus();
         controlUndOption.option = option;
         controlUndOption.controller.text = option.text;
         controlUndOption.controller.addListener(() {
