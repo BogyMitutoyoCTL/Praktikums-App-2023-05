@@ -123,8 +123,6 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
         controllerUndEntscheidung.add(controlUndEntscheidung);
         controlUndEntscheidung.focusNode.requestFocus();
         controlUndEntscheidung.entscheidung = neueEntscheidung;
-        controlUndEntscheidung.entscheidung.optionen.add(Option(""));
-        controlUndEntscheidung.entscheidung.optionen.add(Option(""));
         controlUndEntscheidung.controller.text =
             controlUndEntscheidung.entscheidung.fragestellung;
         controlUndEntscheidung.controller.addListener(() {
@@ -138,6 +136,8 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   }
 
   void home() {
+    datenbank.deleteEmptyOptions();
+    datenbank.deleteDuplicateOptions();
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: (context) => StartWidget()));
   }
