@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:decision_making_app/Datenbank.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:decision_making_app/EditOptionen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
@@ -23,7 +24,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   _EditEntscheidungenState() {
     for (Entscheidung entscheidung in datenbank.entscheidungen) {
       ControllerUndEntscheidung textcontrollerUndEntscheidung =
-          ControllerUndEntscheidung();
+      ControllerUndEntscheidung();
       controllerUndEntscheidung.add(textcontrollerUndEntscheidung);
       textcontrollerUndEntscheidung.entscheidung = entscheidung;
       textcontrollerUndEntscheidung.controller.text =
@@ -39,18 +40,21 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
 
   @override
   Widget build(BuildContext context) {
-    deleteEmtpyOption();
-    deleteDuplicateOption();
+    datenbank.deleteEmptyOptions();
+    datenbank.deleteDuplicateOptions();
     final List<Widget> textfelder = [];
     for (ControllerUndEntscheidung controlUndEntscheidung
-        in controllerUndEntscheidung) {
+    in controllerUndEntscheidung) {
       var loeschen = () => onDelete(controlUndEntscheidung);
       textfelder.add(Row(
         children: [
           Expanded(
             child: TextField(
               controller: controlUndEntscheidung.controller,
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .displaySmall,
             ),
           ),
           Row(
@@ -70,13 +74,13 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
     return Scaffold(
       appBar: AppBar(
           title: Row(
-        children: [
-          Expanded(
-              child:
+            children: [
+              Expanded(
+                  child:
                   Center(child: Text(AppLocalizations.of(context)!.decisions))),
-          IconButton(onPressed: home, icon: Icon(Icons.home)),
-        ],
-      )),
+              IconButton(onPressed: home, icon: Icon(Icons.home)),
+            ],
+          )),
       body: Center(
           child: Padding(
               padding: EdgeInsets.all(15),
@@ -114,7 +118,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
       var neueEntscheidung = datenbank.add("");
       setState(() {
         ControllerUndEntscheidung controlUndEntscheidung =
-            ControllerUndEntscheidung();
+        ControllerUndEntscheidung();
         controllerUndEntscheidung.add(controlUndEntscheidung);
         controlUndEntscheidung.entscheidung = neueEntscheidung;
         controlUndEntscheidung.entscheidung.optionen.add(Option("Option 1"));
@@ -139,38 +143,10 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   void bearbeiten(Entscheidung aktuelleEntscheidung) {
     Navigator.of(context)
         .push(MaterialPageRoute(
-            builder: (context) => EditOptionen(aktuelleEntscheidung)))
+        builder: (context) => EditOptionen(aktuelleEntscheidung)))
         .then(refresh);
   }
 
-  void deleteDuplicateOption() {
-    for (int i = 0; i < controllerUndEntscheidung.length; i++) {
-      var entscheidung2 = controllerUndEntscheidung[i].entscheidung;
-      for (int basis = 0; basis < entscheidung2.optionen.length - 1; basis++) {
-        for (int vgl = basis + 1; vgl < entscheidung2.optionen.length; vgl++) {
-          if (entscheidung2.optionen[basis].toString() ==
-              entscheidung2.optionen[vgl].toString()) {
-            var temp = entscheidung2.optionen[vgl];
-            entscheidung2.optionen.remove(temp);
-            vgl--;
-          }
-        }
-      }
-    }
-  }
-
-  void deleteEmtpyOption() {
-    for (int i = 0; i < controllerUndEntscheidung.length; i++) {
-      var entscheidung2 = controllerUndEntscheidung[i].entscheidung;
-      for (int j = 0; j < entscheidung2.optionen.length; j++) {
-        if (entscheidung2.optionen[j].toString() == "") {
-          var temp = entscheidung2.optionen[j];
-          entscheidung2.optionen.remove(temp);
-          j--;
-        }
-      }
-    }
-  }
 
   FutureOr refresh(value) {
     setState(() {});
