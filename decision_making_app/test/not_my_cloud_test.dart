@@ -22,6 +22,6 @@ void main() {
           print("   " + option.data["option"]);
         }
       }
-    });
+    }, tags: 'database');
   });
 }

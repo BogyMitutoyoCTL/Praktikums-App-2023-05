@@ -32,7 +32,7 @@ void main() {
 
       //Expect a home button in the EditEntscheidungen.dart Widget
       expect(find.byIcon(Icons.home), findsOneWidget);
-    });
+    }, tags: 'ui');
 
     testWidgets('add option', (WidgetTester tester) async {
       const question = "Sample Question?";
@@ -58,6 +58,6 @@ void main() {
 
       // Ensure that the item is on the main screen now
       expect(find.text(question), findsOneWidget);
-    });
+    }, tags: 'ui');
   });
 }
