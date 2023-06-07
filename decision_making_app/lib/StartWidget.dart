@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:decision_making_app/AboutWidget.dart';
 
+import 'UploadToCloud.dart';
+
 var speichern = StoreFiles();
 
 class StartWidget extends StatefulWidget {
@@ -162,5 +164,7 @@ class _StartWidgetState extends State<StartWidget> {
     setState(() {});
   }
 
-  void saveToCloud() {}
+  Future<void> saveToCloud() async {
+    await UploadToCloud().uploadData();
+  }
 }
