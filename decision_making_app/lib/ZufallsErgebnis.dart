@@ -20,16 +20,7 @@ class _ZufallsErgebnisState extends State<ZufallsErgebnis> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: Center(
-            child: Text(
-              widget.frage,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .displayMedium,
-            ),
-          )),
+      appBar: AppBar(),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -37,6 +28,14 @@ class _ZufallsErgebnisState extends State<ZufallsErgebnis> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Text(
+                widget.frage,
+                style: Theme.of(context).textTheme.displayLarge,
+                textAlign: TextAlign.center,
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Text(
