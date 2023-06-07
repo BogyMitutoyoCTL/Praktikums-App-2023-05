@@ -110,23 +110,9 @@ class _EditOptionenState extends State<EditOptionen> {
     });
   }
 
-  void checkDuplicate() {
-    for (int basis = 0; basis < controllersMitOption.length - 1; basis++) {
-      for (int vergleich = basis + 1;
-          vergleich < controllersMitOption.length;
-          vergleich++) {
-        if (controllersMitOption[basis].option.toString() ==
-            controllersMitOption[vergleich].option.toString()) {
-          onDelete((controllersMitOption[vergleich]));
-          vergleich--;
-        }
-      }
-    }
-  }
-
   void home() {
     datenbank.deleteEmptyOptions();
-    checkDuplicate();
+    datenbank.deleteDuplicateOptions();
     Navigator.pushNamedAndRemoveUntil(context, '/start', (route) => false);
   }
 }

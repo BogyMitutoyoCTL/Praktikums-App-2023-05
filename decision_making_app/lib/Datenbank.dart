@@ -19,7 +19,7 @@ class Datenbank {
     return neueEntscheidung;
   }
 
-  deleteEmptyOptions() {
+  void deleteEmptyOptions() {
     for (int i = 0; i < entscheidungen.length; i++) {
       var entscheidung2 = entscheidungen[i];
       for (int j = 0; j < entscheidung2.optionen.length; j++) {
@@ -27,6 +27,28 @@ class Datenbank {
           var temp = entscheidung2.optionen[j];
           entscheidung2.optionen.remove(temp);
           j--;
+        }
+      }
+    }
+  }
+
+  void deleteDuplicateOptions() {
+    {
+      for (int i = 0; i < entscheidungen.length; i++) {
+        var entscheidung2 = entscheidungen[i];
+        for (int basis = 0;
+            basis < entscheidung2.optionen.length - 1;
+            basis++) {
+          for (int vgl = basis + 1;
+              vgl < entscheidung2.optionen.length;
+              vgl++) {
+            if (entscheidung2.optionen[basis].toString() ==
+                entscheidung2.optionen[vgl].toString()) {
+              var temp = entscheidung2.optionen[vgl];
+              entscheidung2.optionen.remove(temp);
+              vgl--;
+            }
+          }
         }
       }
     }
