@@ -12,8 +12,7 @@ class DecisionMakingApp extends StatefulWidget {
   State<DecisionMakingApp> createState() => _DecisionMakingAppState();
 }
 
-class _DecisionMakingAppState extends State<DecisionMakingApp>
-    with WidgetsBindingObserver {
+class _DecisionMakingAppState extends State<DecisionMakingApp> with WidgetsBindingObserver {
   @override
   void initState() {
     super.initState();
@@ -27,7 +26,7 @@ class _DecisionMakingAppState extends State<DecisionMakingApp>
     super.dispose();
   }
 
-  late Future<void>? writingDatabase;
+  late Future<void>? writingDatabase = null;
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) async {
@@ -58,15 +57,10 @@ class _DecisionMakingAppState extends State<DecisionMakingApp>
         title: 'Decision Maker',
         theme: ThemeData(
             primarySwatch: Colors.blue,
-            appBarTheme: AppBarTheme(
-                backgroundColor: Colors.black26,
-                titleTextStyle: TextStyle(fontSize: 20, color: schriftfarbe)),
+            appBarTheme: AppBarTheme(backgroundColor: Colors.black26, titleTextStyle: TextStyle(fontSize: 20, color: schriftfarbe)),
             colorScheme: ColorScheme.dark(),
             textTheme: TextTheme(
-                displayLarge: TextStyle(
-                    fontSize: 28,
-                    color: schriftfarbe,
-                    fontWeight: FontWeight.bold),
+                displayLarge: TextStyle(fontSize: 28, color: schriftfarbe, fontWeight: FontWeight.bold),
                 displayMedium: TextStyle(fontSize: 20, color: schriftfarbe),
                 displaySmall: TextStyle(fontSize: 15, color: schriftfarbe))),
         home: SplashScreen(),
