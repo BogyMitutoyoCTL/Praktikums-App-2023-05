@@ -127,9 +127,7 @@ class _StartWidgetState extends State<StartWidget> {
     for (int i = 0; i < datenbank.entscheidungen.length; i++) {
       if (datenbank.entscheidungen[i].fragestellung == "") {
         var temp = datenbank.entscheidungen[i];
-        if (temp.optionen.length == 2 &&
-            temp.optionen[0].text == "Option 1" &&
-            temp.optionen[1].text == "Option 2") {
+        if (temp.optionen.isEmpty) {
           datenbank.entscheidungen.remove(temp);
         }
       }
