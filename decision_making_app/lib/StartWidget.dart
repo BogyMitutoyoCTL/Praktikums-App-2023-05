@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:decision_making_app/EditEntscheidungen.dart';
 import 'package:decision_making_app/Entscheidung.dart';
+import 'package:decision_making_app/OnlineJsonToOwnFormat.dart';
 import 'package:decision_making_app/ZufallsErgebnis.dart';
 import 'package:decision_making_app/main.dart';
 import 'package:decision_making_app/storeFiles.dart';
@@ -154,7 +155,10 @@ class _StartWidgetState extends State<StartWidget> {
     await speichern.writeData(datenbank);
   }
 
-  void getFromCloud() {}
+  Future<void> getFromCloud() async {
+    await OnlineJsonToOwnFormat().getData();
+    setState(() {});
+  }
 
   void saveToCloud() {}
 }
