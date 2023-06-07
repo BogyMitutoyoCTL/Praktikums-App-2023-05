@@ -7,11 +7,10 @@ class ZufallsErgebnis extends StatefulWidget {
   final String frage;
   final Entscheidung entscheidung;
 
-  const ZufallsErgebnis(
-    this.frage,
-    this.entscheidung, {
-    Key? key,
-  }) : super(key: key);
+  const ZufallsErgebnis(this.frage,
+      this.entscheidung, {
+        Key? key,
+      }) : super(key: key);
 
   @override
   State<ZufallsErgebnis> createState() => _ZufallsErgebnisState();
@@ -23,11 +22,14 @@ class _ZufallsErgebnisState extends State<ZufallsErgebnis> {
     return Scaffold(
       appBar: AppBar(
           title: Center(
-        child: Text(
-          widget.frage,
-          style: Theme.of(context).textTheme.displayMedium,
-        ),
-      )),
+            child: Text(
+              widget.frage,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .displayMedium,
+            ),
+          )),
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -39,19 +41,25 @@ class _ZufallsErgebnisState extends State<ZufallsErgebnis> {
               padding: const EdgeInsets.all(10.0),
               child: Text(
                 zufallsergebnis(context),
-                style: Theme.of(context).textTheme.displayLarge,
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .displayLarge,
                 textAlign: TextAlign.center,
               ),
             ),
             Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: ElevatedButton(
+              padding: const EdgeInsets.all(10.0),
+              child: ElevatedButton(
                   onPressed: reroll,
+                  style:
+                  ElevatedButton.styleFrom(backgroundColor: Colors.white),
                   child: Text(
                     AppLocalizations.of(context)!.reroll,
-                    style: Theme.of(context).textTheme.displayMedium,
-                  ),
-                ))
+                    style: TextStyle(fontSize: 20, color: Colors.black),
+
+                  )),
+            )
           ],
         ),
       ),
