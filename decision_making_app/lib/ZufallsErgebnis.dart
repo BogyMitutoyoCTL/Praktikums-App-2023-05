@@ -7,25 +7,23 @@ class ZufallsErgebnis extends StatelessWidget {
   final String frage;
   final Entscheidung entscheidung;
 
-  const ZufallsErgebnis(this.frage,
-      this.entscheidung, {
-        Key? key,
-      }) : super(key: key);
+  const ZufallsErgebnis(
+    this.frage,
+    this.entscheidung, {
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
           title: Center(
-            child: Text(frage),
-          )),
+        child: Text(frage),
+      )),
       body: Center(
         child: Text(
           zufallsergebnis(context),
-          style: Theme
-              .of(context)
-              .textTheme
-              .displayLarge,
+          style: Theme.of(context).textTheme.displayLarge,
           textAlign: TextAlign.center,
         ),
       ),
