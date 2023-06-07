@@ -35,16 +35,22 @@ class _ZufallsErgebnisState extends State<ZufallsErgebnis> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              zufallsergebnis(context),
-              style: Theme.of(context).textTheme.displayLarge,
-              textAlign: TextAlign.center,
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                zufallsergebnis(context),
+                style: Theme.of(context).textTheme.displayLarge,
+                textAlign: TextAlign.center,
+              ),
             ),
-            ElevatedButton(
-                onPressed: reroll,
-                child: Text(
-                  AppLocalizations.of(context)!.reroll,
-                  style: Theme.of(context).textTheme.displayMedium,
+            Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ElevatedButton(
+                  onPressed: reroll,
+                  child: Text(
+                    AppLocalizations.of(context)!.reroll,
+                    style: Theme.of(context).textTheme.displayMedium,
+                  ),
                 ))
           ],
         ),
