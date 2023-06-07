@@ -123,8 +123,8 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
         controllerUndEntscheidung.add(controlUndEntscheidung);
         controlUndEntscheidung.focusNode.requestFocus();
         controlUndEntscheidung.entscheidung = neueEntscheidung;
-        controlUndEntscheidung.entscheidung.optionen.add(Option("Option 1"));
-        controlUndEntscheidung.entscheidung.optionen.add(Option("Option 2"));
+        controlUndEntscheidung.entscheidung.optionen.add(Option(""));
+        controlUndEntscheidung.entscheidung.optionen.add(Option(""));
         controlUndEntscheidung.controller.text =
             controlUndEntscheidung.entscheidung.fragestellung;
         controlUndEntscheidung.controller.addListener(() {
@@ -143,6 +143,7 @@ class _EditEntscheidungenState extends State<EditEntscheidungen> {
   }
 
   void bearbeiten(Entscheidung aktuelleEntscheidung) {
+    datenbank.addEmptyOptions(aktuelleEntscheidung);
     Navigator.of(context)
         .push(MaterialPageRoute(
             builder: (context) => EditOptionen(aktuelleEntscheidung)))

@@ -1,3 +1,5 @@
+import 'package:decision_making_app/Option.dart';
+
 import 'Entscheidung.dart';
 import 'package:collection/collection.dart';
 
@@ -28,6 +30,15 @@ class Datenbank {
           entscheidung2.optionen.remove(temp);
           j--;
         }
+      }
+    }
+  }
+
+  void addEmptyOptions(Entscheidung ausgewaehlteEntscheidung) {
+    int anzahlLeereOptionen = 2;
+    if (ausgewaehlteEntscheidung.optionen.length == 0) {
+      for (int i = 0; i < anzahlLeereOptionen; i++) {
+        ausgewaehlteEntscheidung.add("");
       }
     }
   }
